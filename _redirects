@@ -1,5 +1,3 @@
-# Rediriger les utilisateurs non authentifiés vers la page de login
-/*  /login.html  200!  Role=!user
-# Permettre l'accès aux utilisateurs authentifiés
-/*  /:splat  200  Role=user
+/* /:splat 200
+
 
