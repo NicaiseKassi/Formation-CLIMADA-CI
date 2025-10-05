@@ -1,285 +1,333 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manuel de Formation CLIMADA - Authentification</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>Connexion - Manuel CLIMADA</title>
     <style>
-      body {
-        font-family: "Arial", sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-      .auth-container {
-        background: white;
-        padding: 50px;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 500px;
-        width: 90%;
-      }
-      h1 {
-        color: #333;
-        margin-bottom: 10px;
-        font-size: 28px;
-      }
-      h2 {
-        color: #667eea;
-        margin-bottom: 20px;
-        font-size: 20px;
-        font-weight: normal;
-      }
-      .loading {
-        margin: 40px 0;
-      }
-      .spinner {
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #667eea;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-        margin: 0 auto;
-      }
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        100% {
-          transform: rotate(360deg);
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-      }
-      .message {
-        color: #666;
-        margin-top: 20px;
-        font-size: 16px;
-      }
-      .success {
-        color: #28a745;
-      }
-      .warning {
-        color: #ffc107;
-      }
-      .error {
-        color: #dc3545;
-      }
-      .contact {
-        margin-top: 30px;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 8px;
-      }
-      .contact h3 {
-        color: #667eea;
-        margin-bottom: 15px;
-        font-size: 16px;
-      }
-      .contact p {
-        margin: 8px 0;
-        color: #666;
-        font-size: 14px;
-      }
-      .contact a {
-        color: #667eea;
-        text-decoration: none;
-      }
-      .contact a:hover {
-        text-decoration: underline;
-      }
-      .btn {
-        background: #667eea;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-      .btn:hover {
-        background: #5568d3;
-      }
-      .footer {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        color: #999;
-        font-size: 14px;
-      }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: normal;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover:not(:disabled) {
+            background: #5568d3;
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message.show {
+            display: block;
+        }
+        
+        .message.error {
+            background: #fee;
+            color: #c00;
+            border: 1px solid #fcc;
+        }
+        
+        .message.success {
+            background: #efe;
+            color: #060;
+            border: 1px solid #cfc;
+        }
+        
+        .message.info {
+            background: #eef;
+            color: #006;
+            border: 1px solid #ccf;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            color: #888;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .contact {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .contact h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .contact p {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .contact a {
+            color: #667eea;
+            text-decoration: none;
+        }
     </style>
-  </head>
-  <body>
-    <div class="auth-container">
-      <h1>🎓 Manuel de Formation CLIMADA</h1>
-      <h2>Direction Générale de l'Économie - Côte d'Ivoire</h2>
-
-      <div id="auth-status">
-        <div class="loading">
-          <div class="spinner"></div>
-          <p class="message">🔐 Initialisation de l'authentification...</p>
+</head>
+<body>
+    <div class="login-container">
+        <h1>🎓 Manuel de Formation CLIMADA</h1>
+        <h2>Direction Générale de l'Économie - Côte d'Ivoire</h2>
+        
+        <div id="message" class="message"></div>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('login')">Se connecter</div>
+            <div class="tab" onclick="switchTab('signup')">Créer un compte</div>
         </div>
-      </div>
-
-      <div class="contact">
-        <h3>📞 Support Technique</h3>
-        <p><strong>Nicaise KASSI</strong></p>
-        <p>📧 <a href="mailto:ettekassi@gmail.com">ettekassi@gmail.com</a></p>
-        <p>📱 <a href="tel:0709252846">0709252846</a></p>
-        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd" />
-        <p><strong>Luc COULIBALY</strong></p>
-        <p>
-          📧
-          <a href="mailto:riflardluc_coulibaly@yahoo.fr"
-            >riflardluc_coulibaly@yahoo.fr</a
-          >
-        </p>
-        <p>📱 <a href="tel:0707342607">0707342607</a></p>
-      </div>
-
-      <div class="footer">
-        <p>© 2025 DGE - Ministère de l'Économie et des Finances</p>
-      </div>
+        
+        <!-- Login -->
+        <div id="login-form" class="tab-content active">
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn" id="login-btn">Se connecter</button>
+            </form>
+        </div>
+        
+        <!-- Signup -->
+        <div id="signup-form" class="tab-content">
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe (minimum 6 caractères)</label>
+                    <input type="password" id="signup-password" required minlength="6">
+                </div>
+                <button type="submit" class="btn" id="signup-btn">Créer mon compte</button>
+            </form>
+        </div>
+        
+        <div class="contact">
+            <h3>📞 Support</h3>
+            <p><strong>Nicaise KASSI</strong> - <a href="mailto:ettekassi@gmail.com">ettekassi@gmail.com</a> - 0709252846</p>
+            <p><strong>Luc COULIBALY</strong> - <a href="mailto:riflardluc_coulibaly@yahoo.fr">riflardluc_coulibaly@yahoo.fr</a> - 0707342607</p>
+        </div>
     </div>
 
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      const authStatus = document.getElementById("auth-status");
-      const SESSION_KEY = "climada_manual_session";
-
-      console.log("=== PAGE D'AUTHENTIFICATION ===");
-
-      if (window.netlifyIdentity) {
+        console.log('=== NOUVELLE PAGE LOGIN ===');
         
-        // Afficher le modal de connexion
-        function showLoginModal() {
-          authStatus.innerHTML = `
-            <p class="message">🔒 Accès réservé aux participants de la formation</p>
-            <p class="message">Veuillez vous connecter avec vos identifiants</p>
-          `;
-          setTimeout(() => {
-            netlifyIdentity.open();
-          }, 500);
-        }
-
-        // Au chargement, vérifier l'utilisateur
-        netlifyIdentity.on("init", (user) => {
-          console.log("Init - User:", user ? user.email : "none");
-          
-          // Nettoyer le hash de l'URL
-          if (window.location.hash) {
-            window.history.replaceState(null, null, window.location.pathname);
-          }
-          
-          if (!user) {
-            // Pas d'utilisateur - montrer le modal
-            showLoginModal();
-          } else {
-            // Utilisateur déjà connecté - vérifier s'il vient de confirmer
-            const fromConfirmation = document.referrer.includes('netlify') || 
-                                     window.location.search.includes('confirmation');
+        const SESSION_KEY = 'climada_manual_session';
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             
-            if (fromConfirmation) {
-              // Vient de confirmer - demander de se reconnecter
-              console.log("Confirmation détectée - demander login");
-              authStatus.innerHTML = `
-                <p class="message success">✅ Email confirmé !</p>
-                <p class="message">Veuillez vous connecter pour continuer</p>
-              `;
-              netlifyIdentity.logout();
-              setTimeout(showLoginModal, 2000);
+            if (tab === 'login') {
+                document.querySelectorAll('.tab')[0].classList.add('active');
+                document.getElementById('login-form').classList.add('active');
             } else {
-              // Déjà authentifié - rediriger
-              console.log("Déjà connecté - redirection");
-              authStatus.innerHTML = `
-                <p class="message">✅ Vous êtes déjà connecté</p>
-                <p class="message">Redirection...</p>
-              `;
-              setTimeout(() => {
-                window.location.href = "/chapitre1_installation/";
-              }, 500);
+                document.querySelectorAll('.tab')[1].classList.add('active');
+                document.getElementById('signup-form').classList.add('active');
             }
-          }
-        });
-
-        // Événement : Signup
-        netlifyIdentity.on("signup", (user) => {
-          console.log("Signup:", user.email);
-          authStatus.innerHTML = `
-            <p class="message success">✅ Compte créé !</p>
-            <p class="message">Veuillez maintenant vous connecter</p>
-          `;
-          setTimeout(() => {
+            hideMessage();
+        }
+        
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type} show`;
+        }
+        
+        function hideMessage() {
+            document.getElementById('message').classList.remove('show');
+        }
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Connexion...';
+            
             netlifyIdentity.open('login');
-          }, 1500);
-        });
-
-        // Événement : Login réussi
-        netlifyIdentity.on("login", (user) => {
-          console.log("Login réussi:", user.email);
-
-          // Créer la session
-          localStorage.setItem(SESSION_KEY, Date.now().toString());
-          
-          // Fermer le modal
-          netlifyIdentity.close();
-
-          // Message de succès
-          authStatus.innerHTML = `
-            <p class="message success">✅ Connexion réussie !</p>
-            <p class="message">Bienvenue ${user.user_metadata.full_name || user.email}</p>
-            <p class="message">Chargement du manuel...</p>
-          `;
-
-          // Redirection
-          console.log("Redirection vers le manuel...");
-          window.location.href = "/chapitre1_installation/";
-        });
-
-        // ÉVÉNEMENT : Fermeture du modal
-        netlifyIdentity.on("close", () => {
-          const currentUser = netlifyIdentity.currentUser();
-          console.log(
-            "Modal fermé - Utilisateur:",
-            currentUser ? currentUser.email : "aucun"
-          );
-
-          if (!currentUser) {
-            authStatus.innerHTML = `
-              <p class="message warning">⚠️ Vous devez vous connecter pour accéder au manuel</p>
-              <button class="btn" onclick="netlifyIdentity.open()">Se connecter</button>
-            `;
-          }
-        });
-
-        // ÉVÉNEMENT : Erreur
-        netlifyIdentity.on("error", (err) => {
-          console.error("Erreur Identity:", err);
-          authStatus.innerHTML = `
-            <p class="message error">❌ Erreur de connexion</p>
-            <p class="message">${err.message || "Erreur inconnue"}</p>
-            <button class="btn" onclick="netlifyIdentity.open()">Réessayer</button>
-          `;
-        });
-
-        // ÉVÉNEMENT : Logout
-        netlifyIdentity.on("logout", () => {
-          console.log("Déconnexion effectuée");
-          localStorage.removeItem(SESSION_KEY);
-        });
-      } else {
-        console.error("Netlify Identity non chargé");
-        authStatus.innerHTML = `
-          <p class="message error">❌ Erreur de chargement du système d'authentification</p>
-          <p class="message">Veuillez rafraîchir la page</p>
-          <button class="btn" onclick="location.reload()">Rafraîchir</button>
-        `;
-      }
+        }
+        
+        function handleSignup(e) {
+            e.preventDefault();
+            const btn = document.getElementById('signup-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Création...';
+            
+            netlifyIdentity.open('signup');
+        }
+        
+        // Événements Netlify Identity
+        if (window.netlifyIdentity) {
+            netlifyIdentity.on('init', user => {
+                console.log('Init:', user ? user.email : 'none');
+                if (user) {
+                    localStorage.setItem(SESSION_KEY, Date.now());
+                    window.location.href = '/chapitre1_installation/';
+                }
+            });
+            
+            netlifyIdentity.on('login', user => {
+                console.log('Login OK:', user.email);
+                localStorage.setItem(SESSION_KEY, Date.now());
+                showMessage('✅ Connexion réussie !', 'success');
+                setTimeout(() => {
+                    window.location.href = '/chapitre1_installation/';
+                }, 500);
+            });
+            
+            netlifyIdentity.on('signup', user => {
+                console.log('Signup OK:', user.email);
+                showMessage('✅ Compte créé ! Connectez-vous maintenant.', 'success');
+                switchTab('login');
+            });
+            
+            netlifyIdentity.on('error', err => {
+                console.error('Erreur:', err);
+                showMessage('❌ ' + err.message, 'error');
+                document.getElementById('login-btn').disabled = false;
+                document.getElementById('login-btn').textContent = 'Se connecter';
+                document.getElementById('signup-btn').disabled = false;
+                document.getElementById('signup-btn').textContent = 'Créer mon compte';
+            });
+        }
     </script>
-  </body>
+</body>
 </html>
