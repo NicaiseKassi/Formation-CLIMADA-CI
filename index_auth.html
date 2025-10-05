@@ -26,7 +26,7 @@
         padding: 50px 40px;
         border-radius: 15px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-        max-width: 500px;
+        max-width: 450px;
         width: 100%;
         text-align: center;
       }
@@ -34,13 +34,13 @@
       h1 {
         color: #333;
         margin-bottom: 10px;
-        font-size: 26px;
+        font-size: 24px;
       }
 
       h2 {
         color: #667eea;
-        margin-bottom: 15px;
-        font-size: 15px;
+        margin-bottom: 20px;
+        font-size: 16px;
         font-weight: normal;
       }
 
@@ -51,6 +51,7 @@
         margin: 25px 0;
         border-radius: 8px;
         text-align: left;
+        font-size: 14px;
       }
 
       .info-box p {
@@ -59,68 +60,23 @@
         line-height: 1.6;
       }
 
-      .info-box strong {
-        color: #667eea;
-      }
-
-      form {
-        text-align: left;
-        margin-top: 15px;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 6px;
-        color: #555;
-        font-weight: 600;
-      }
-
-      input[type="email"],
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 15px;
-        margin-bottom: 14px;
-        transition: border 0.3s;
-      }
-
-      input:focus {
-        outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-      }
-
       .btn {
         width: 100%;
-        padding: 14px;
+        padding: 16px;
         background: #667eea;
         color: white;
         border: none;
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.3s, transform 0.2s;
+        transition: all 0.3s;
+        margin: 10px 0;
       }
 
-      .btn:hover:not(:disabled) {
+      .btn:hover {
         background: #5568d3;
         transform: translateY(-1px);
-      }
-
-      .btn:disabled {
-        background: #cbd5f5;
-        cursor: not-allowed;
-      }
-
-      .panel {
-        display: none;
-      }
-
-      .panel.active {
-        display: block;
       }
 
       #status {
@@ -128,19 +84,12 @@
         padding: 15px;
         border-radius: 8px;
         display: none;
-        white-space: pre-line;
         text-align: left;
         line-height: 1.6;
       }
 
       #status.show {
         display: block;
-      }
-
-      #status.info {
-        background: #e3f2fd;
-        color: #1565c0;
-        border: 1px solid #90caf9;
       }
 
       #status.success {
@@ -153,6 +102,12 @@
         background: #ffebee;
         color: #c62828;
         border: 1px solid #ef9a9a;
+      }
+
+      #status.info {
+        background: #e3f2fd;
+        color: #1565c0;
+        border: 1px solid #90caf9;
       }
 
       .contact {
@@ -188,62 +143,16 @@
 
       <div id="status"></div>
 
-      <div class="info-box" id="instructions-box">
-        <p><strong>📧 Première connexion ?</strong></p>
-        <p>
-          <strong style="color: #c62828">⚠️ IMPORTANT :</strong> Lorsque vous
-          recevez l'email d'invitation :
-        </p>
-        <ol style="margin: 10px 0 10px 20px; line-height: 1.8">
-          <li>Cliquez sur le lien reçu par email</li>
-          <li>Définissez votre mot de passe (formulaire ci-dessous)</li>
-          <li>Revenez ensuite sur cette page pour vous connecter</li>
-        </ol>
+      <div class="info-box">
+        <p><strong>📧 Instructions :</strong></p>
+        <p>1. Si vous avez reçu un email d'invitation, cliquez d'abord sur le lien dans l'email</p>
+        <p>2. Définissez votre mot de passe sur la page qui s'ouvre</p>
+        <p>3. Revenez ici et cliquez sur le bouton ci-dessous</p>
       </div>
 
-      <div id="login-panel" class="panel active">
-        <h3 style="margin-bottom: 10px; color: #444">🔐 Connexion au manuel</h3>
-        <form id="login-form">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" autocomplete="email" required />
-
-          <label for="login-password">Mot de passe</label>
-          <input
-            type="password"
-            id="login-password"
-            autocomplete="current-password"
-            required
-          />
-
-          <button type="submit" class="btn" id="login-btn">Se connecter</button>
-        </form>
-      </div>
-
-      <div id="invite-panel" class="panel">
-        <h3 style="margin-bottom: 10px; color: #444">
-          🎉 Activation de votre compte
-        </h3>
-        <p style="text-align: left; color: #555">
-          Vous avez été invité au manuel CLIMADA. Choisissez votre mot de passe
-          pour activer votre accès.
-        </p>
-        <form id="invite-form">
-          <label for="invite-password">Nouveau mot de passe</label>
-          <input type="password" id="invite-password" required minlength="6" />
-
-          <label for="invite-password-confirm">Confirmer le mot de passe</label>
-          <input
-            type="password"
-            id="invite-password-confirm"
-            required
-            minlength="6"
-          />
-
-          <button type="submit" class="btn" id="invite-btn">
-            Valider et accéder au manuel
-          </button>
-        </form>
-      </div>
+      <button class="btn" onclick="startAuth()">
+        🔐 Ouvrir l'authentification
+      </button>
 
       <div class="contact">
         <h3>📞 Support</h3>
@@ -262,315 +171,93 @@
       </div>
     </div>
 
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      (function () {
-        const SESSION_KEY = "climada_manual_session";
-        const API_URL =
-          "https://formation-climada-dge.netlify.app/.netlify/identity";
-
-        const statusEl = document.getElementById("status");
-        const loginPanel = document.getElementById("login-panel");
-        const invitePanel = document.getElementById("invite-panel");
-        const instructionsBox = document.getElementById("instructions-box");
-        const loginForm = document.getElementById("login-form");
-        const inviteForm = document.getElementById("invite-form");
-        const loginBtn = document.getElementById("login-btn");
-        const inviteBtn = document.getElementById("invite-btn");
-
-        let auth = null;
-        let inviteToken = null;
-
-        function showStatus(message, type) {
-          statusEl.textContent = message;
-          statusEl.className = `show ${type}`;
+      const SESSION_KEY = "climada_manual_session";
+      
+      function showStatus(message, type) {
+        const status = document.getElementById("status");
+        status.textContent = message;
+        status.className = `show ${type}`;
+      }
+      
+      function startAuth() {
+        console.log("Démarrage authentification");
+        if (window.netlifyIdentity) {
+          netlifyIdentity.open();
+        } else {
+          showStatus("❌ Erreur de chargement. Rechargez la page.", "error");
         }
+      }
+      
+      // Gestion automatique des liens de confirmation/invitation
+      const hash = window.location.hash;
+      if (hash && (hash.includes('confirmation_token') || hash.includes('invite_token'))) {
+        console.log("Lien détecté dans URL");
+        showStatus("📧 Traitement automatique de votre lien...", "info");
+        
+        // Ouvrir automatiquement le widget
+        setTimeout(() => {
+          if (window.netlifyIdentity) {
+            netlifyIdentity.open();
+          }
+        }, 1000);
+      }
 
-        function hideStatus() {
-          statusEl.className = "";
-          statusEl.textContent = "";
-        }
-
-        function showPanel(panel) {
-          loginPanel.classList.remove("active");
-          invitePanel.classList.remove("active");
-          panel.classList.add("active");
-        }
-
-        function redirectToManual(delay = 800) {
+      if (window.netlifyIdentity) {
+        // Vérifier si déjà connecté
+        netlifyIdentity.on("init", (user) => {
+          console.log("Init:", user ? user.email : "aucun");
+          if (user) {
+            localStorage.setItem(SESSION_KEY, Date.now().toString());
+            showStatus("✅ Déjà connecté ! Redirection...", "success");
+            setTimeout(() => {
+              window.location.href = "/chapitre1_installation/";
+            }, 1000);
+          }
+        });
+        
+        // Connexion réussie
+        netlifyIdentity.on("login", (user) => {
+          console.log("✅ Login:", user.email);
+          localStorage.setItem(SESSION_KEY, Date.now().toString());
+          showStatus("✅ Connexion réussie ! Accès au manuel...", "success");
+          netlifyIdentity.close();
           setTimeout(() => {
             window.location.href = "/chapitre1_installation/";
-          }, delay);
-        }
-
-        function ensureAuthInstance() {
-          if (!auth) {
-            return null;
+          }, 1000);
+        });
+        
+        // Inscription réussie (invitation acceptée)
+        netlifyIdentity.on("signup", (user) => {
+          console.log("✅ Signup:", user.email);
+          localStorage.setItem(SESSION_KEY, Date.now().toString());
+          showStatus("✅ Compte activé ! Accès au manuel...", "success");
+          netlifyIdentity.close();
+          setTimeout(() => {
+            window.location.href = "/chapitre1_installation/";
+          }, 1000);
+        });
+        
+        // Erreurs
+        netlifyIdentity.on("error", (err) => {
+          console.error("❌ Erreur:", err);
+          showStatus("❌ " + err.message, "error");
+        });
+        
+        // Vérification périodique au cas où
+        setInterval(() => {
+          const user = netlifyIdentity.currentUser();
+          if (user && !localStorage.getItem(SESSION_KEY)) {
+            console.log("✅ Utilisateur détecté - redirection");
+            localStorage.setItem(SESSION_KEY, Date.now().toString());
+            showStatus("✅ Authentifié ! Redirection...", "success");
+            setTimeout(() => {
+              window.location.href = "/chapitre1_installation/";
+            }, 500);
           }
-          return auth;
-        }
-
-        function handleLogin(event) {
-          event.preventDefault();
-          hideStatus();
-
-          if (!ensureAuthInstance()) {
-            showStatus(
-              "⏳ Chargement de l'authentification... Veuillez patienter et réessayer.",
-              "info"
-            );
-            return;
-          }
-
-          const email = document.getElementById("login-email").value.trim();
-          const password = document
-            .getElementById("login-password")
-            .value.trim();
-
-          if (!email || !password) {
-            showStatus("❌ Email et mot de passe requis", "error");
-            return;
-          }
-
-          loginBtn.disabled = true;
-          loginBtn.textContent = "Connexion...";
-
-          auth
-            .login(email, password, true)
-            .then((user) => {
-              console.log("✅ Connexion réussie", user.email);
-              localStorage.setItem(SESSION_KEY, Date.now().toString());
-              showStatus(
-                "✅ Connexion réussie ! Accès au manuel...",
-                "success"
-              );
-              redirectToManual();
-            })
-            .catch((error) => {
-              console.error("Erreur login", error);
-              let message = "❌ Impossible de se connecter.";
-
-              if (error && error.msg) {
-                message += `\n\n${error.msg}`;
-              } else if (error && error.code === 401) {
-                message =
-                  "❌ Email ou mot de passe incorrect. Vérifiez vos identifiants ou réinitialisez votre mot de passe.";
-              } else if (error && error.message) {
-                if (error.message.includes("confirm")) {
-                  message =
-                    "❌ Votre email n'est pas encore confirmé.\n\nCliquez sur le lien reçu par email, puis réessayez.";
-                } else if (
-                  error.message.includes("password") ||
-                  error.message.includes("credentials")
-                ) {
-                  message =
-                    "❌ Email ou mot de passe incorrect. Vérifiez votre mot de passe ou réinitialisez-le.";
-                } else {
-                  message += `\n\n${error.message}`;
-                }
-              }
-
-              showStatus(message, "error");
-              loginBtn.disabled = false;
-              loginBtn.textContent = "Se connecter";
-            });
-        }
-
-        function handleInvite(event) {
-          event.preventDefault();
-          hideStatus();
-
-          if (!ensureAuthInstance()) {
-            showStatus(
-              "⏳ Chargement de l'authentification... Veuillez patienter et réessayer.",
-              "info"
-            );
-            return;
-          }
-
-          if (!inviteToken) {
-            showStatus("❌ Jeton d'invitation manquant.", "error");
-            return;
-          }
-
-          const password = document
-            .getElementById("invite-password")
-            .value.trim();
-          const confirmPassword = document
-            .getElementById("invite-password-confirm")
-            .value.trim();
-
-          if (password.length < 6) {
-            showStatus(
-              "❌ Mot de passe trop court. Minimum 6 caractères.",
-              "error"
-            );
-            return;
-          }
-
-          if (password !== confirmPassword) {
-            showStatus("❌ Les mots de passe ne correspondent pas.", "error");
-            return;
-          }
-
-          inviteBtn.disabled = true;
-          inviteBtn.textContent = "Activation en cours...";
-
-          auth
-            .acceptInvite(inviteToken, password, true)
-            .then((user) => {
-              console.log("✅ Invitation acceptée", user.email);
-              localStorage.setItem(SESSION_KEY, Date.now().toString());
-              showStatus(
-                "✅ Mot de passe défini ! Accès au manuel en cours...",
-                "success"
-              );
-              clearHash();
-              redirectToManual(1200);
-            })
-            .catch((error) => {
-              console.error("Erreur acceptInvite", error);
-              let message =
-                "❌ Impossible d'activer votre compte. Le lien est peut-être expiré.";
-              if (error && error.msg) {
-                message += `\n\n${error.msg}`;
-              }
-              showStatus(message, "error");
-              inviteBtn.disabled = false;
-              inviteBtn.textContent = "Valider et accéder au manuel";
-            });
-        }
-
-        function clearHash() {
-          if (window.history && window.history.replaceState) {
-            window.history.replaceState(null, "", window.location.pathname);
-          }
-        }
-
-        function processHash() {
-          const hash = window.location.hash.replace(/^#/, "");
-          if (!hash) {
-            return;
-          }
-
-          const params = new URLSearchParams(hash);
-
-          if (params.has("invite_token")) {
-            inviteToken = params.get("invite_token");
-            showStatus(
-              "🎉 Invitation détectée ! Choisissez un mot de passe pour activer votre compte.",
-              "info"
-            );
-            showPanel(invitePanel);
-            instructionsBox.style.display = "none";
-            return;
-          }
-
-          if (params.has("confirmation_token")) {
-            const token = params.get("confirmation_token");
-            showStatus("📧 Confirmation de votre email...", "info");
-
-            auth
-              .confirm(token)
-              .then((user) => {
-                console.log("✅ Email confirmé", user?.email);
-                if (user) {
-                  localStorage.setItem(SESSION_KEY, Date.now().toString());
-                  showStatus(
-                    "✅ Email confirmé ! Ouverture du manuel...",
-                    "success"
-                  );
-                  clearHash();
-                  redirectToManual();
-                } else {
-                  showStatus(
-                    "✅ Email confirmé. Vous pouvez maintenant vous connecter.",
-                    "success"
-                  );
-                  clearHash();
-                }
-              })
-              .catch((error) => {
-                console.error("Erreur confirmation", error);
-                showStatus(
-                  "❌ Le lien de confirmation n'est plus valide. Demandez un nouvel email.",
-                  "error"
-                );
-              });
-
-            return;
-          }
-
-          if (params.has("recovery_token")) {
-            showStatus(
-              "🔑 Lien de récupération détecté. Réinitialisez votre mot de passe.",
-              "info"
-            );
-            return;
-          }
-        }
-
-        function checkExistingSession() {
-          try {
-            const currentUser = auth.currentUser();
-            if (currentUser) {
-              console.log("✅ Session existante", currentUser.email);
-              localStorage.setItem(SESSION_KEY, Date.now().toString());
-              showStatus(
-                "✅ Vous êtes déjà connecté. Accès au manuel...",
-                "success"
-              );
-              redirectToManual();
-            }
-          } catch (error) {
-            console.error("Impossible de vérifier la session", error);
-          }
-        }
-
-        function monitorSession() {
-          try {
-            const currentUser = auth.currentUser();
-            if (currentUser) {
-              console.log(
-                "✅ Connexion détectée automatiquement",
-                currentUser.email
-              );
-              localStorage.setItem(SESSION_KEY, Date.now().toString());
-              showStatus(
-                "✅ Authentification validée ! Ouverture du manuel...",
-                "success"
-              );
-              redirectToManual();
-            }
-          } catch (error) {
-            console.error("Erreur surveillance session", error);
-          }
-        }
-
-        function waitForGoTrue(attempt = 0) {
-          if (window.GoTrue) {
-            auth = new window.GoTrue({
-              APIUrl: API_URL,
-              setCookie: true,
-            });
-            console.log("GoTrue initialisé");
-            processHash();
-            checkExistingSession();
-            setInterval(monitorSession, 2000);
-          } else if (attempt < 20) {
-            setTimeout(() => waitForGoTrue(attempt + 1), 250);
-          } else {
-            showStatus(
-              "⚠️ Impossible de charger l'authentification. Rafraîchissez la page ou contactez le support.",
-              "error"
-            );
-          }
-        }
-
-        loginForm.addEventListener("submit", handleLogin);
-        inviteForm.addEventListener("submit", handleInvite);
-
-        waitForGoTrue();
-      })();
+        }, 2000);
+      }
     </script>
   </body>
 </html>
