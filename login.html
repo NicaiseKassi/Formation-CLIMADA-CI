@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Connexion - Formation CLIMADA</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>🔐 Manuel de Formation CLIMADA</h1>
+        <p>Veuillez vous connecter pour accéder au manuel de formation.</p>
+        <button onclick="netlifyIdentity.open()">Se connecter</button>
+    </div>
+
+    <script>
+        if (window.netlifyIdentity) {
+            netlifyIdentity.on("init", user => {
+                if (user) {
+                    // Utilisateur déjà connecté, rediriger vers la page d'accueil
+                    window.location.href = "/";
+                }
+            });
+
+            netlifyIdentity.on("login", () => {
+                // Après connexion, rediriger vers la page d'accueil
+                window.location.href = "/";
+            });
+        }
+    </script>
+</body>
+</html>
