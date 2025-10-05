@@ -217,6 +217,14 @@
 
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
+      // Configuration pour forcer la redirection immédiate
+      if (window.netlifyIdentity) {
+        netlifyIdentity.init({
+          APIUrl: 'https://formation-climada-dge.netlify.app/.netlify/identity'
+        });
+      }
+    </script>
+    <script>
       const SESSION_KEY = "climada_manual_session";
 
       function showStatus(message, type) {
@@ -229,11 +237,16 @@
         console.log("Ouverture connexion Netlify Identity");
         netlifyIdentity.open("login");
       }
-      
+
       // Vérifier si c'est un lien de confirmation
       const hash = window.location.hash;
-      if (hash && (hash.includes('confirmation_token') || hash.includes('invite_token') || hash.includes('recovery_token'))) {
-        console.log('🔗 Lien de confirmation détecté dans URL');
+      if (
+        hash &&
+        (hash.includes("confirmation_token") ||
+          hash.includes("invite_token") ||
+          hash.includes("recovery_token"))
+      ) {
+        console.log("🔗 Lien de confirmation détecté dans URL");
         showStatus("📧 Traitement de votre confirmation...", "info");
       }
 
@@ -266,7 +279,7 @@
             window.location.href = "/chapitre1_installation/";
           }, 1000);
         });
-        
+
         netlifyIdentity.on("signup", (user) => {
           console.log("✅ Événement signup déclenché:", user.email);
           // Après signup via lien d'invitation, l'utilisateur est automatiquement connecté
@@ -304,19 +317,35 @@
 
           showStatus(errorMsg, "error");
         });
+
+        // Vérification agressive toutes les 500ms
+        let checkCount = 0;
+        const maxChecks = 20; // 10 secondes max
         
-        // Fallback : vérifier après 3 secondes si un utilisateur est connecté
-        setTimeout(() => {
+        const userCheckInterval = setInterval(() => {
+          checkCount++;
           const user = netlifyIdentity.currentUser();
-          if (user && window.location.pathname === '/index_auth.html') {
-            console.log("⏱️ Fallback: Utilisateur détecté après 3s, redirection");
+          console.log(`⏱️ Vérification ${checkCount}/${maxChecks}:`, user ? user.email : "aucun");
+          
+          if (user) {
+            console.log("✅ Utilisateur détecté ! Redirection immédiate");
+            clearInterval(userCheckInterval);
             localStorage.setItem(SESSION_KEY, Date.now().toString());
-            showStatus("✅ Authentifié ! Redirection...", "success");
+            showStatus("✅ Authentification réussie ! Accès au manuel...", "success");
+            // Fermer le modal s'il est ouvert
+            try {
+              netlifyIdentity.close();
+            } catch(e) {
+              console.log("Modal déjà fermé");
+            }
             setTimeout(() => {
               window.location.href = "/chapitre1_installation/";
-            }, 500);
+            }, 800);
+          } else if (checkCount >= maxChecks) {
+            console.log("⏱️ Temps maximum atteint, arrêt des vérifications");
+            clearInterval(userCheckInterval);
           }
-        }, 3000);
+        }, 500);
       } else {
         console.error("Widget Netlify Identity non chargé !");
         showStatus("⚠️ Erreur de chargement. Rechargez la page.", "error");
