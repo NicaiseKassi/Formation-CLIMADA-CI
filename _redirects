@@ -1,16 +1,15 @@
-# Redirection par défaut vers la page d'authentification
-/ /index_auth.html 302
-
 # Page d'authentification accessible à tous
 /index_auth.html 200
+/ /index_auth.html 302
 
-# Permettre l'accès aux ressources statiques (CSS, JS, images)
+# Permettre l'accès aux ressources statiques
 /css/* 200
 /js/* 200
 /assets/* 200
 /img/* 200
+/search/* 200
 
-# Protéger TOUTES les autres pages - nécessite rôle "user" ET session active
-/* 200! Role=user
+# TOUTES les autres pages nécessitent une authentification
+/* /index_auth.html 302!
 
 

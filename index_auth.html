@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manuel de Formation CLIMADA - DGE</title>
+    <title>Manuel de Formation CLIMADA - Authentification</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
       body {
@@ -24,10 +24,6 @@
         text-align: center;
         max-width: 500px;
         width: 90%;
-      }
-      .logo {
-        max-width: 120px;
-        margin-bottom: 30px;
       }
       h1 {
         color: #333;
@@ -53,25 +49,17 @@
         margin: 0 auto;
       }
       @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
       .message {
         color: #666;
         margin-top: 20px;
         font-size: 16px;
       }
-      .footer {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        color: #999;
-        font-size: 14px;
-      }
+      .success { color: #28a745; }
+      .warning { color: #ffc107; }
+      .error { color: #dc3545; }
       .contact {
         margin-top: 30px;
         padding: 20px;
@@ -95,6 +83,26 @@
       .contact a:hover {
         text-decoration: underline;
       }
+      .btn {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .btn:hover {
+        background: #5568d3;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: #999;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
@@ -105,7 +113,7 @@
       <div id="auth-status">
         <div class="loading">
           <div class="spinner"></div>
-          <p class="message">🔐 Vérification de votre accès...</p>
+          <p class="message">🔐 Initialisation de l'authentification...</p>
         </div>
       </div>
 
@@ -116,12 +124,7 @@
         <p>📱 <a href="tel:0709252846">0709252846</a></p>
         <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd" />
         <p><strong>Luc COULIBALY</strong></p>
-        <p>
-          📧
-          <a href="mailto:riflardluc_coulibaly@yahoo.fr"
-            >riflardluc_coulibaly@yahoo.fr</a
-          >
-        </p>
+        <p>📧 <a href="mailto:riflardluc_coulibaly@yahoo.fr">riflardluc_coulibaly@yahoo.fr</a></p>
         <p>📱 <a href="tel:0707342607">0707342607</a></p>
       </div>
 
@@ -132,109 +135,120 @@
 
     <script>
       const authStatus = document.getElementById("auth-status");
+      const SESSION_KEY = 'climada_manual_session';
+      
+      // TOUJOURS nettoyer la session au chargement de cette page
+      localStorage.removeItem(SESSION_KEY);
+      
+      console.log('=== PAGE D\'AUTHENTIFICATION CHARGÉE ===');
 
-      // Initialiser Netlify Identity
       if (window.netlifyIdentity) {
-        // Gérer la confirmation d'email (après clic sur lien d'invitation)
-        netlifyIdentity.on("signup", (user) => {
-          // Après la confirmation, déconnecter immédiatement
-          authStatus.innerHTML = `
-                        <p class="message">✅ Compte confirmé avec succès !</p>
-                        <p class="message">⚠️ Veuillez vous connecter maintenant avec votre email et mot de passe</p>
-                    `;
-          netlifyIdentity.logout();
-        });
+        let userLoggedOut = false;
 
-        // Détecter l'état de l'utilisateur
-        netlifyIdentity.on("init", (user) => {
-          // Vérifier si on vient d'une confirmation d'email
-          const hash = window.location.hash;
-          if (hash.includes("confirmation_token") || hash.includes("invite_token")) {
-            // On vient d'une confirmation - NE PAS rediriger, forcer la déconnexion
-            if (user) {
-              netlifyIdentity.logout();
-            }
+        // Fonction pour afficher le modal de connexion
+        function showLoginModal() {
+          authStatus.innerHTML = `
+            <p class="message">🔒 Accès réservé aux participants de la formation</p>
+            <p class="message">Veuillez vous connecter avec vos identifiants</p>
+          `;
+          netlifyIdentity.open();
+        }
+
+        // Fonction pour gérer la déconnexion forcée
+        function forceLogoutAndPromptLogin(reason) {
+          console.log('Déconnexion forcée:', reason);
+          const user = netlifyIdentity.currentUser();
+          if (user && !userLoggedOut) {
+            userLoggedOut = true;
             authStatus.innerHTML = `
-                        <p class="message">✅ Email confirmé !</p>
-                        <p class="message">🔐 Veuillez vous connecter pour accéder au manuel</p>
-                    `;
-            // Nettoyer le hash de l'URL
-            window.history.replaceState(null, null, window.location.pathname);
-            setTimeout(() => {
-              netlifyIdentity.open();
-            }, 2000);
+              <p class="message warning">⚠️ ${reason}</p>
+              <p class="message">Veuillez vous reconnecter pour continuer</p>
+            `;
+            netlifyIdentity.logout();
+            setTimeout(showLoginModal, 1000);
           } else if (!user) {
-            // Utilisateur non connecté - ouvrir le modal
-            authStatus.innerHTML = `
-                        <p class="message">🔒 Accès réservé aux participants de la formation</p>
-                        <p class="message">Veuillez vous connecter avec vos identifiants</p>
-                    `;
-            netlifyIdentity.open();
+            showLoginModal();
+          }
+        }
+
+        // ÉVÉNEMENT : Initialisation
+        netlifyIdentity.on("init", (user) => {
+          console.log('Init - Utilisateur:', user ? user.email : 'aucun');
+          
+          // Nettoyer les tokens dans l'URL
+          if (window.location.hash) {
+            console.log('Nettoyage du hash URL');
+            window.history.replaceState(null, null, window.location.pathname);
+          }
+          
+          // TOUJOURS forcer la déconnexion sur cette page
+          if (user) {
+            forceLogoutAndPromptLogin('Veuillez vous authentifier');
           } else {
-            // Utilisateur déjà connecté - rediriger vers le manuel
-            authStatus.innerHTML = `
-                        <p class="message">✅ Connexion réussie !</p>
-                        <p class="message">Redirection vers le manuel...</p>
-                    `;
-            setTimeout(() => {
-              window.location.href = "/chapitre1_installation/";
-            }, 1000);
+            showLoginModal();
           }
         });
 
-        // Après connexion réussie
-        netlifyIdentity.on("login", () => {
+        // ÉVÉNEMENT : Après signup (confirmation d'email)
+        netlifyIdentity.on("signup", (user) => {
+          console.log('Signup détecté:', user.email);
+          forceLogoutAndPromptLogin('Compte confirmé ! Veuillez vous connecter');
+        });
+
+        // ÉVÉNEMENT : Après login
+        netlifyIdentity.on("login", (user) => {
+          console.log('Login réussi:', user.email);
+          
+          // Marquer la session comme authentifiée
+          localStorage.setItem(SESSION_KEY, Date.now().toString());
+          
           authStatus.innerHTML = `
-                    <p class="message">✅ Authentification réussie !</p>
-                    <p class="message">Chargement du manuel...</p>
-                `;
+            <p class="message success">✅ Authentification réussie !</p>
+            <p class="message">Bienvenue ${user.user_metadata.full_name || user.email}</p>
+            <p class="message">Redirection vers le manuel...</p>
+          `;
+          
           setTimeout(() => {
             window.location.href = "/chapitre1_installation/";
           }, 1500);
         });
 
-        // Si l'utilisateur ferme le modal sans se connecter
+        // ÉVÉNEMENT : Fermeture du modal
         netlifyIdentity.on("close", () => {
           const currentUser = netlifyIdentity.currentUser();
+          console.log('Modal fermé - Utilisateur:', currentUser ? currentUser.email : 'aucun');
+          
           if (!currentUser) {
             authStatus.innerHTML = `
-                        <p class="message">⚠️ Vous devez vous connecter pour accéder au manuel</p>
-                        <button onclick="netlifyIdentity.open()" style="
-                            background: #667eea;
-                            color: white;
-                            border: none;
-                            padding: 12px 30px;
-                            font-size: 16px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            margin-top: 20px;
-                        ">Réessayer</button>
-                    `;
+              <p class="message warning">⚠️ Vous devez vous connecter pour accéder au manuel</p>
+              <button class="btn" onclick="netlifyIdentity.open()">Se connecter</button>
+            `;
           }
         });
 
-        // Erreur de connexion
+        // ÉVÉNEMENT : Erreur
         netlifyIdentity.on("error", (err) => {
+          console.error('Erreur Identity:', err);
           authStatus.innerHTML = `
-                    <p class="message" style="color: #dc3545;">❌ Erreur de connexion</p>
-                    <p class="message" style="color: #666;">${err.message}</p>
-                    <button onclick="netlifyIdentity.open()" style="
-                        background: #667eea;
-                        color: white;
-                        border: none;
-                        padding: 12px 30px;
-                        font-size: 16px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        margin-top: 20px;
-                    ">Réessayer</button>
-                `;
+            <p class="message error">❌ Erreur de connexion</p>
+            <p class="message">${err.message || 'Erreur inconnue'}</p>
+            <button class="btn" onclick="netlifyIdentity.open()">Réessayer</button>
+          `;
         });
+
+        // ÉVÉNEMENT : Logout
+        netlifyIdentity.on("logout", () => {
+          console.log('Déconnexion effectuée');
+          localStorage.removeItem(SESSION_KEY);
+        });
+
       } else {
+        console.error('Netlify Identity non chargé');
         authStatus.innerHTML = `
-                <p class="message" style="color: #dc3545;">❌ Erreur de chargement</p>
-                <p class="message">Veuillez rafraîchir la page</p>
-            `;
+          <p class="message error">❌ Erreur de chargement du système d'authentification</p>
+          <p class="message">Veuillez rafraîchir la page</p>
+          <button class="btn" onclick="location.reload()">Rafraîchir</button>
+        `;
       }
     </script>
   </body>
