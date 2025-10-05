@@ -135,9 +135,35 @@
 
       // Initialiser Netlify Identity
       if (window.netlifyIdentity) {
+        // Gérer la confirmation d'email (après clic sur lien d'invitation)
+        netlifyIdentity.on("signup", (user) => {
+          // Après la confirmation, déconnecter immédiatement
+          authStatus.innerHTML = `
+                        <p class="message">✅ Compte confirmé avec succès !</p>
+                        <p class="message">⚠️ Veuillez vous connecter maintenant avec votre email et mot de passe</p>
+                    `;
+          netlifyIdentity.logout();
+        });
+
         // Détecter l'état de l'utilisateur
         netlifyIdentity.on("init", (user) => {
-          if (!user) {
+          // Vérifier si on vient d'une confirmation d'email
+          const hash = window.location.hash;
+          if (hash.includes("confirmation_token") || hash.includes("invite_token")) {
+            // On vient d'une confirmation - NE PAS rediriger, forcer la déconnexion
+            if (user) {
+              netlifyIdentity.logout();
+            }
+            authStatus.innerHTML = `
+                        <p class="message">✅ Email confirmé !</p>
+                        <p class="message">🔐 Veuillez vous connecter pour accéder au manuel</p>
+                    `;
+            // Nettoyer le hash de l'URL
+            window.history.replaceState(null, null, window.location.pathname);
+            setTimeout(() => {
+              netlifyIdentity.open();
+            }, 2000);
+          } else if (!user) {
             // Utilisateur non connecté - ouvrir le modal
             authStatus.innerHTML = `
                         <p class="message">🔒 Accès réservé aux participants de la formation</p>
@@ -145,7 +171,7 @@
                     `;
             netlifyIdentity.open();
           } else {
-            // Utilisateur connecté - rediriger vers le manuel
+            // Utilisateur déjà connecté - rediriger vers le manuel
             authStatus.innerHTML = `
                         <p class="message">✅ Connexion réussie !</p>
                         <p class="message">Redirection vers le manuel...</p>
