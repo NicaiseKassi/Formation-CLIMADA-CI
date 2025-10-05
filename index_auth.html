@@ -1,168 +1,177 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manuel de Formation CLIMADA - DGE</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .auth-container {
+        background: white;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+      }
+      .logo {
+        max-width: 120px;
+        margin-bottom: 30px;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+      h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: normal;
+      }
+      .loading {
+        margin: 40px 0;
+      }
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #667eea;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .auth-container {
-            background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
+        100% {
+          transform: rotate(360deg);
         }
-        .logo {
-            max-width: 120px;
-            margin-bottom: 30px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 20px;
-            font-weight: normal;
-        }
-        .loading {
-            margin: 40px 0;
-        }
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .message {
-            color: #666;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 14px;
-        }
-        .contact {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        .contact h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        .contact p {
-            margin: 8px 0;
-            color: #666;
-            font-size: 14px;
-        }
-        .contact a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        .contact a:hover {
-            text-decoration: underline;
-        }
+      }
+      .message {
+        color: #666;
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: #999;
+        font-size: 14px;
+      }
+      .contact {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+      .contact h3 {
+        color: #667eea;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+      .contact p {
+        margin: 8px 0;
+        color: #666;
+        font-size: 14px;
+      }
+      .contact a {
+        color: #667eea;
+        text-decoration: none;
+      }
+      .contact a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="auth-container">
-        <h1>🎓 Manuel de Formation CLIMADA</h1>
-        <h2>Direction Générale de l'Économie - Côte d'Ivoire</h2>
-        
-        <div id="auth-status">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p class="message">🔐 Vérification de votre accès...</p>
-            </div>
-        </div>
+      <h1>🎓 Manuel de Formation CLIMADA</h1>
+      <h2>Direction Générale de l'Économie - Côte d'Ivoire</h2>
 
-        <div class="contact">
-            <h3>📞 Support Technique</h3>
-            <p><strong>Nicaise KASSI</strong></p>
-            <p>📧 <a href="mailto:ettekassi@gmail.com">ettekassi@gmail.com</a></p>
-            <p>📱 <a href="tel:0709252846">0709252846</a></p>
-            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
-            <p><strong>Luc COULIBALY</strong></p>
-            <p>📧 <a href="mailto:riflardluc_coulibaly@yahoo.fr">riflardluc_coulibaly@yahoo.fr</a></p>
-            <p>📱 <a href="tel:0707342607">0707342607</a></p>
+      <div id="auth-status">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p class="message">🔐 Vérification de votre accès...</p>
         </div>
+      </div>
 
-        <div class="footer">
-            <p>© 2025 DGE - Ministère de l'Économie et des Finances</p>
-        </div>
+      <div class="contact">
+        <h3>📞 Support Technique</h3>
+        <p><strong>Nicaise KASSI</strong></p>
+        <p>📧 <a href="mailto:ettekassi@gmail.com">ettekassi@gmail.com</a></p>
+        <p>📱 <a href="tel:0709252846">0709252846</a></p>
+        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd" />
+        <p><strong>Luc COULIBALY</strong></p>
+        <p>
+          📧
+          <a href="mailto:riflardluc_coulibaly@yahoo.fr"
+            >riflardluc_coulibaly@yahoo.fr</a
+          >
+        </p>
+        <p>📱 <a href="tel:0707342607">0707342607</a></p>
+      </div>
+
+      <div class="footer">
+        <p>© 2025 DGE - Ministère de l'Économie et des Finances</p>
+      </div>
     </div>
 
     <script>
-        const authStatus = document.getElementById('auth-status');
+      const authStatus = document.getElementById("auth-status");
 
-        // Initialiser Netlify Identity
-        if (window.netlifyIdentity) {
-            // Détecter l'état de l'utilisateur
-            netlifyIdentity.on("init", user => {
-                if (!user) {
-                    // Utilisateur non connecté - ouvrir le modal
-                    authStatus.innerHTML = `
+      // Initialiser Netlify Identity
+      if (window.netlifyIdentity) {
+        // Détecter l'état de l'utilisateur
+        netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            // Utilisateur non connecté - ouvrir le modal
+            authStatus.innerHTML = `
                         <p class="message">🔒 Accès réservé aux participants de la formation</p>
                         <p class="message">Veuillez vous connecter avec vos identifiants</p>
                     `;
-                    netlifyIdentity.open();
-                } else {
-                    // Utilisateur connecté - rediriger vers le manuel
-                    authStatus.innerHTML = `
+            netlifyIdentity.open();
+          } else {
+            // Utilisateur connecté - rediriger vers le manuel
+            authStatus.innerHTML = `
                         <p class="message">✅ Connexion réussie !</p>
                         <p class="message">Redirection vers le manuel...</p>
                     `;
-                    setTimeout(() => {
-                        window.location.href = "/chapitre1_installation/";
-                    }, 1000);
-                }
-            });
+            setTimeout(() => {
+              window.location.href = "/chapitre1_installation/";
+            }, 1000);
+          }
+        });
 
-            // Après connexion réussie
-            netlifyIdentity.on("login", () => {
-                authStatus.innerHTML = `
+        // Après connexion réussie
+        netlifyIdentity.on("login", () => {
+          authStatus.innerHTML = `
                     <p class="message">✅ Authentification réussie !</p>
                     <p class="message">Chargement du manuel...</p>
                 `;
-                setTimeout(() => {
-                    window.location.href = "/chapitre1_installation/";
-                }, 1500);
-            });
+          setTimeout(() => {
+            window.location.href = "/chapitre1_installation/";
+          }, 1500);
+        });
 
-            // Si l'utilisateur ferme le modal sans se connecter
-            netlifyIdentity.on("close", () => {
-                const currentUser = netlifyIdentity.currentUser();
-                if (!currentUser) {
-                    authStatus.innerHTML = `
+        // Si l'utilisateur ferme le modal sans se connecter
+        netlifyIdentity.on("close", () => {
+          const currentUser = netlifyIdentity.currentUser();
+          if (!currentUser) {
+            authStatus.innerHTML = `
                         <p class="message">⚠️ Vous devez vous connecter pour accéder au manuel</p>
                         <button onclick="netlifyIdentity.open()" style="
                             background: #667eea;
@@ -175,12 +184,12 @@
                             margin-top: 20px;
                         ">Réessayer</button>
                     `;
-                }
-            });
+          }
+        });
 
-            // Erreur de connexion
-            netlifyIdentity.on("error", err => {
-                authStatus.innerHTML = `
+        // Erreur de connexion
+        netlifyIdentity.on("error", (err) => {
+          authStatus.innerHTML = `
                     <p class="message" style="color: #dc3545;">❌ Erreur de connexion</p>
                     <p class="message" style="color: #666;">${err.message}</p>
                     <button onclick="netlifyIdentity.open()" style="
@@ -194,13 +203,13 @@
                         margin-top: 20px;
                     ">Réessayer</button>
                 `;
-            });
-        } else {
-            authStatus.innerHTML = `
+        });
+      } else {
+        authStatus.innerHTML = `
                 <p class="message" style="color: #dc3545;">❌ Erreur de chargement</p>
                 <p class="message">Veuillez rafraîchir la page</p>
             `;
-        }
+      }
     </script>
-</body>
+  </body>
 </html>
