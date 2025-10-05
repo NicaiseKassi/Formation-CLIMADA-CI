@@ -5,75 +5,90 @@
 
 (function () {
   const SESSION_KEY = "climada_manual_session";
+  const API_URL = "https://formation-climada-dge.netlify.app/.netlify/identity";
+  let auth = null;
 
-  console.log("=== AUTH GUARD ACTIF ===");
+  console.log("=== AUTH GUARD ACTIF (GoTrue) ===");
 
-  // Fonction pour vérifier l'authentification
+  function initAuth() {
+    if (!window.GoTrue) {
+      console.warn("GoTrue non chargé - nouvelle tentative dans 500ms");
+      setTimeout(initAuth, 500);
+      return;
+    }
+
+    auth = new window.GoTrue({
+      APIUrl: API_URL,
+      setCookie: true,
+    });
+
+    checkAuth();
+  }
+
+  function getCurrentUser() {
+    if (!auth) {
+      return null;
+    }
+
+    try {
+      return auth.currentUser();
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de l'utilisateur courant",
+        error
+      );
+      return null;
+    }
+  }
+
   function checkAuth() {
-    // Vérifier si Netlify Identity est chargé
-    if (!window.netlifyIdentity) {
-      console.error("Netlify Identity non chargé - redirection");
+    const user = getCurrentUser();
+    const session = localStorage.getItem(SESSION_KEY);
+
+    console.log("Utilisateur courant:", user ? user.email : "aucun");
+    console.log("Session:", session ? "active" : "inactive");
+
+    if (!user || !session) {
+      console.log("Authentification requise - redirection");
       redirectToAuth();
       return;
     }
 
-    // Vérifier l'utilisateur actuel
-    const user = netlifyIdentity.currentUser();
-    console.log("Utilisateur actuel:", user ? user.email : "aucun");
-
-    // Vérifier la session
-    const session = localStorage.getItem(SESSION_KEY);
-    console.log("Session:", session ? "active" : "inactive");
-
-    if (!user || !session) {
-      // Pas d'utilisateur ou pas de session - rediriger
-      console.log("Authentification requise - redirection");
+    const roles = user.app_metadata?.roles || [];
+    if (!roles.includes("user")) {
+      console.warn("Rôle insuffisant - redirection");
       redirectToAuth();
-    } else {
-      // Vérifier le rôle "user"
-      const roles = user.app_metadata?.roles || [];
-      if (!roles.includes("user")) {
-        console.warn("Rôle insuffisant - redirection");
-        redirectToAuth();
-      } else {
-        console.log("✅ Authentification valide");
-      }
+      return;
     }
+
+    console.log("✅ Authentification valide");
   }
 
-  // Fonction de redirection
   function redirectToAuth() {
-    // Nettoyer la session
     localStorage.removeItem(SESSION_KEY);
 
-    // Éviter les boucles de redirection
     if (!window.location.pathname.includes("index_auth")) {
       console.log("Redirection vers /index_auth.html");
       window.location.href = "/index_auth.html";
     }
   }
 
-  // Attendre que Netlify Identity soit prêt
-  if (window.netlifyIdentity) {
-    netlifyIdentity.on("init", checkAuth);
-
-    // Vérifier à chaque événement de déconnexion
-    netlifyIdentity.on("logout", function () {
-      console.log("Déconnexion détectée - redirection");
+  function handleStorage(event) {
+    if (event.key === SESSION_KEY && event.newValue === null) {
+      console.log("Session supprimée depuis un autre onglet - redirection");
       redirectToAuth();
-    });
-  } else {
-    // Si Netlify Identity n'est pas chargé, attendre un peu puis vérifier
-    setTimeout(function () {
-      if (!window.netlifyIdentity) {
-        console.error("Netlify Identity toujours pas chargé après timeout");
-        redirectToAuth();
-      } else {
-        checkAuth();
-      }
-    }, 2000);
+    }
   }
 
-  // Vérifier également au chargement complet de la page
+  // Vérifications périodiques pour s'assurer que la session reste valide
+  function startPeriodicChecks() {
+    setInterval(checkAuth, 3000);
+  }
+
   window.addEventListener("load", checkAuth);
+  window.addEventListener("focus", checkAuth);
+  window.addEventListener("storage", handleStorage);
+
+  initAuth();
+  startPeriodicChecks();
 })();
