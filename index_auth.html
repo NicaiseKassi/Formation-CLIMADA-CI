@@ -49,17 +49,27 @@
         margin: 0 auto;
       }
       @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
       .message {
         color: #666;
         margin-top: 20px;
         font-size: 16px;
       }
-      .success { color: #28a745; }
-      .warning { color: #ffc107; }
-      .error { color: #dc3545; }
+      .success {
+        color: #28a745;
+      }
+      .warning {
+        color: #ffc107;
+      }
+      .error {
+        color: #dc3545;
+      }
       .contact {
         margin-top: 30px;
         padding: 20px;
@@ -124,7 +134,12 @@
         <p>📱 <a href="tel:0709252846">0709252846</a></p>
         <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd" />
         <p><strong>Luc COULIBALY</strong></p>
-        <p>📧 <a href="mailto:riflardluc_coulibaly@yahoo.fr">riflardluc_coulibaly@yahoo.fr</a></p>
+        <p>
+          📧
+          <a href="mailto:riflardluc_coulibaly@yahoo.fr"
+            >riflardluc_coulibaly@yahoo.fr</a
+          >
+        </p>
         <p>📱 <a href="tel:0707342607">0707342607</a></p>
       </div>
 
@@ -135,15 +150,16 @@
 
     <script>
       const authStatus = document.getElementById("auth-status");
-      const SESSION_KEY = 'climada_manual_session';
-      
-      // TOUJOURS nettoyer la session au chargement de cette page
+      const SESSION_KEY = "climada_manual_session";
+
+      // Nettoyer la session au chargement
       localStorage.removeItem(SESSION_KEY);
-      
-      console.log('=== PAGE D\'AUTHENTIFICATION CHARGÉE ===');
+
+      console.log("=== PAGE D'AUTHENTIFICATION CHARGÉE ===");
 
       if (window.netlifyIdentity) {
-        let userLoggedOut = false;
+        let isLoggingIn = false;
+        let hasInitialized = false;
 
         // Fonction pour afficher le modal de connexion
         function showLoginModal() {
@@ -154,70 +170,77 @@
           netlifyIdentity.open();
         }
 
-        // Fonction pour gérer la déconnexion forcée
-        function forceLogoutAndPromptLogin(reason) {
-          console.log('Déconnexion forcée:', reason);
-          const user = netlifyIdentity.currentUser();
-          if (user && !userLoggedOut) {
-            userLoggedOut = true;
-            authStatus.innerHTML = `
-              <p class="message warning">⚠️ ${reason}</p>
-              <p class="message">Veuillez vous reconnecter pour continuer</p>
-            `;
-            netlifyIdentity.logout();
-            setTimeout(showLoginModal, 1000);
-          } else if (!user) {
-            showLoginModal();
-          }
-        }
-
         // ÉVÉNEMENT : Initialisation
         netlifyIdentity.on("init", (user) => {
-          console.log('Init - Utilisateur:', user ? user.email : 'aucun');
-          
+          console.log("Init - Utilisateur:", user ? user.email : "aucun");
+
+          // Ne traiter qu'une seule fois
+          if (hasInitialized) {
+            console.log("Déjà initialisé, ignorer");
+            return;
+          }
+          hasInitialized = true;
+
           // Nettoyer les tokens dans l'URL
           if (window.location.hash) {
-            console.log('Nettoyage du hash URL');
+            console.log("Nettoyage du hash URL");
             window.history.replaceState(null, null, window.location.pathname);
           }
-          
-          // TOUJOURS forcer la déconnexion sur cette page
-          if (user) {
-            forceLogoutAndPromptLogin('Veuillez vous authentifier');
-          } else {
+
+          // Si utilisateur déjà connecté (ex: vient de confirmer email)
+          if (user && !isLoggingIn) {
+            console.log("Utilisateur détecté au chargement - déconnexion");
+            netlifyIdentity.logout();
+            setTimeout(showLoginModal, 500);
+          } else if (!user) {
             showLoginModal();
           }
         });
 
         // ÉVÉNEMENT : Après signup (confirmation d'email)
         netlifyIdentity.on("signup", (user) => {
-          console.log('Signup détecté:', user.email);
-          forceLogoutAndPromptLogin('Compte confirmé ! Veuillez vous connecter');
+          console.log("Signup détecté:", user.email);
+          authStatus.innerHTML = `
+            <p class="message success">✅ Compte créé !</p>
+            <p class="message">Veuillez maintenant vous connecter</p>
+          `;
+          netlifyIdentity.logout();
+          setTimeout(showLoginModal, 2000);
         });
 
         // ÉVÉNEMENT : Après login
         netlifyIdentity.on("login", (user) => {
-          console.log('Login réussi:', user.email);
-          
+          console.log("Login réussi:", user.email);
+          isLoggingIn = true;
+
           // Marquer la session comme authentifiée
           localStorage.setItem(SESSION_KEY, Date.now().toString());
-          
+
+          // Fermer le modal
+          netlifyIdentity.close();
+
           authStatus.innerHTML = `
             <p class="message success">✅ Authentification réussie !</p>
-            <p class="message">Bienvenue ${user.user_metadata.full_name || user.email}</p>
+            <p class="message">Bienvenue ${
+              user.user_metadata.full_name || user.email
+            }</p>
             <p class="message">Redirection vers le manuel...</p>
           `;
-          
+
+          // Redirection immédiate
           setTimeout(() => {
             window.location.href = "/chapitre1_installation/";
-          }, 1500);
+          }, 1000);
         });
 
         // ÉVÉNEMENT : Fermeture du modal
         netlifyIdentity.on("close", () => {
           const currentUser = netlifyIdentity.currentUser();
-          console.log('Modal fermé - Utilisateur:', currentUser ? currentUser.email : 'aucun');
-          
+          console.log(
+            "Modal fermé - Utilisateur:",
+            currentUser ? currentUser.email : "aucun"
+          );
+
           if (!currentUser) {
             authStatus.innerHTML = `
               <p class="message warning">⚠️ Vous devez vous connecter pour accéder au manuel</p>
@@ -228,22 +251,21 @@
 
         // ÉVÉNEMENT : Erreur
         netlifyIdentity.on("error", (err) => {
-          console.error('Erreur Identity:', err);
+          console.error("Erreur Identity:", err);
           authStatus.innerHTML = `
             <p class="message error">❌ Erreur de connexion</p>
-            <p class="message">${err.message || 'Erreur inconnue'}</p>
+            <p class="message">${err.message || "Erreur inconnue"}</p>
             <button class="btn" onclick="netlifyIdentity.open()">Réessayer</button>
           `;
         });
 
         // ÉVÉNEMENT : Logout
         netlifyIdentity.on("logout", () => {
-          console.log('Déconnexion effectuée');
+          console.log("Déconnexion effectuée");
           localStorage.removeItem(SESSION_KEY);
         });
-
       } else {
-        console.error('Netlify Identity non chargé');
+        console.error("Netlify Identity non chargé");
         authStatus.innerHTML = `
           <p class="message error">❌ Erreur de chargement du système d'authentification</p>
           <p class="message">Veuillez rafraîchir la page</p>
