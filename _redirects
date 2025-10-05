@@ -1,3 +1,6 @@
-/* /:splat 200
+# Rediriger la page d'accueil vers la page d'authentification
+/  /index_auth.html  200
+# Toutes les autres pages restent accessibles
+/*  /:splat  200
 
 
