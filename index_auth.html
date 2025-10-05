@@ -134,6 +134,9 @@
         padding: 15px;
         border-radius: 8px;
         display: none;
+        white-space: pre-line;
+        text-align: left;
+        line-height: 1.6;
       }
 
       #status.show {
@@ -167,10 +170,16 @@
       <div id="status"></div>
 
       <div class="info-box">
-        <p><strong>📧 Pour les participants invités uniquement</strong></p>
-        <p>
-          Si vous avez reçu un email d'invitation, cliquez sur le bouton
-          ci-dessous pour vous connecter.
+        <p><strong>📧 Première connexion ?</strong></p>
+        <p><strong style="color: #c62828;">⚠️ IMPORTANT :</strong> Avant de vous connecter, vous devez :</p>
+        <ol style="margin: 10px 0 10px 20px; line-height: 1.8;">
+          <li>Recevoir l'email d'invitation</li>
+          <li><strong>Cliquer sur le lien dans l'email</strong></li>
+          <li>Définir votre mot de passe</li>
+          <li>Puis revenir ici pour vous connecter</li>
+        </ol>
+        <p style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px;">
+          💡 Si vous voyez "Email not confirmed", c'est que vous n'avez pas encore cliqué sur le lien de confirmation dans votre email !
         </p>
       </div>
 
@@ -241,10 +250,23 @@
 
         netlifyIdentity.on("error", (err) => {
           console.error("❌ Erreur:", err);
-          showStatus(
-            "❌ Erreur de connexion. Vérifiez vos identifiants.",
-            "error"
-          );
+          
+          let errorMsg = "❌ Erreur de connexion. Vérifiez vos identifiants.";
+          
+          if (err.message && err.message.includes("Email not confirmed")) {
+            errorMsg = "❌ VOTRE EMAIL N'EST PAS CONFIRMÉ !\n\n" +
+                      "📧 Allez dans votre boîte mail, cherchez l'email de Netlify Identity, " +
+                      "et CLIQUEZ SUR LE LIEN DE CONFIRMATION avant de vous connecter.\n\n" +
+                      "Puis revenez ici et réessayez.";
+          } else if (err.message && (err.message.includes("Invalid") || err.message.includes("Wrong"))) {
+            errorMsg = "❌ Email ou mot de passe incorrect.\n\n" +
+                      "Vérifiez que vous avez bien défini votre mot de passe en cliquant sur le lien dans l'email d'invitation.";
+          } else if (err.message && err.message.includes("not found")) {
+            errorMsg = "❌ Cet email n'est pas dans la liste des participants invités.\n\n" +
+                      "Contactez les formateurs pour obtenir une invitation.";
+          }
+          
+          showStatus(errorMsg, "error");
         });
       } else {
         console.error("Widget Netlify Identity non chargé !");
