@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Chapitre 4 - Aide à la Décision - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chapitre 4 - Aide \u00e0 la D\u00e9cision";
+        var mkdocs_page_input_path = "chapitre4_decision.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre1_installation/">Chapitre 1 - Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre2_donnees/">Chapitre 2 - Les Données d'Entrée</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre3_tp/">Chapitre 3 - Travaux Pratiques</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Chapitre 4 - Aide à la Décision</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-mener-une-analyse-couts-benefices-acb">4.1 Mener une Analyse Coûts-Bénéfices (ACB)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-calculer-le-scenario-de-reference">1. Calculer le Scénario de Référence</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-modeliser-lintervention">2. Modéliser l'Intervention</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-calculer-le-scenario-avec-projet">3. Calculer le Scénario "Avec Projet"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-calculer-le-benefice-et-la-rentabilite">4. Calculer le Bénéfice et la Rentabilité</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-integration-dans-la-declaration-des-risques-budgetaires-drb">4.2 Intégration dans la Déclaration des Risques Budgétaires (DRB)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#43-points-cles-pour-la-decision">4.3 Points Clés pour la Décision</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#indicateurs-a-communiquer">Indicateurs à Communiquer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recommandations">Recommandations</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Chapitre 4 - Aide à la Décision</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Breadcrumb Navigation">
+        <a href="../chapitre3_tp/" class="btn btn-neutral float-left" title="Chapitre 3 - Travaux Pratiques"><span class="icon icon-circle-arrow-left" aria-hidden="true"></span> Previous</a>
+        <a href="../chapitre5_depannage/" class="btn btn-neutral float-right" title="Chapitre 5 - Dépannage">Next <span class="icon icon-circle-arrow-right" aria-hidden="true"></span></a>
+    </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chapitre-4-de-lanalyse-a-la-decision-economique"><strong>Chapitre 4 : De l'Analyse à la Décision Économique</strong></h1>
+<p>Une fois les impacts calculés, CLIMADA devient un puissant outil d'aide à la décision pour la DGE.</p>
+<hr />
+<h2 id="41-mener-une-analyse-couts-benefices-acb"><strong>4.1 Mener une Analyse Coûts-Bénéfices (ACB)</strong></h2>
+<p>L'ACB permet de justifier économiquement les investissements dans l'adaptation. La démarche est la suivante :</p>
+<h3 id="1-calculer-le-scenario-de-reference"><strong>1. Calculer le Scénario de Référence</strong></h3>
+<p>Utilisez CLIMADA pour calculer la <strong>Perte Annuelle Moyenne (PAM)</strong> pour un risque donné (ex: inondations à Abidjan). Cette PAM représente le coût annuel moyen de l'inaction.</p>
+<ul>
+<li><em>Exemple : PAM Inondations Abidjan = 2,8 Milliards FCFA/an.</em></li>
+</ul>
+<h3 id="2-modeliser-lintervention"><strong>2. Modéliser l'Intervention</strong></h3>
+<p>Définissez un projet d'adaptation (ex: un programme de curage des caniveaux coûtant 5 Milliards FCFA). Modélisez son effet sur l'aléa (le curage réduit la hauteur d'eau maximale de 30% en moyenne).</p>
+<h3 id="3-calculer-le-scenario-avec-projet"><strong>3. Calculer le Scénario "Avec Projet"</strong></h3>
+<p>Relancez le calcul de la PAM avec l'aléa modifié.</p>
+<ul>
+<li><em>Exemple : Nouvelle PAM avec projet = 1 Milliard FCFA/an.</em></li>
+</ul>
+<h3 id="4-calculer-le-benefice-et-la-rentabilite"><strong>4. Calculer le Bénéfice et la Rentabilité</strong></h3>
+<ul>
+<li>
+<p><strong>Bénéfice Annuel :</strong> PAM (sans projet) - PAM (avec projet) = 2,8 - 1 = 1,8 Milliards FCFA de pertes évitées chaque année.</p>
+</li>
+<li>
+<p><strong>Temps de Retour sur Investissement :</strong> Coût du projet / Bénéfice Annuel = 5 / 1,8 ≈ 2,8 ans.</p>
+</li>
+<li>
+<p><strong>Conclusion pour la décision :</strong> L'investissement est économiquement très rentable. CLIMADA fournit les chiffres pour arbitrer en faveur de ce budget préventif.</p>
+</li>
+</ul>
+<hr />
+<h2 id="42-integration-dans-la-declaration-des-risques-budgetaires-drb"><strong>4.2 Intégration dans la Déclaration des Risques Budgétaires (DRB)</strong></h2>
+<p>Les résultats de CLIMADA alimentent directement la DRB et répondent aux exigences de nos partenaires (notamment la MR2 de l'accord avec le FMI).</p>
+<ul>
+<li>
+<p>La <strong>Perte Annuelle Moyenne (PAM)</strong> doit être interprétée comme un <strong>passif contingent implicite</strong> récurrent pour le budget de l'État. C'est le montant moyen que l'État devra débourser chaque année (en aide d'urgence, reconstruction, etc.).</p>
+</li>
+<li>
+<p>La <strong>Perte Maximale Probable (PMP)</strong> pour une période de retour donnée (ex: 100 ans) représente le <strong>montant d'un choc budgétaire extrême</strong>. Ce chiffre est essentiel pour les stress tests et pour dimensionner les fonds de contingence ou les mécanismes d'assurance souveraine.</p>
+</li>
+</ul>
+<hr />
+<h2 id="43-points-cles-pour-la-decision"><strong>4.3 Points Clés pour la Décision</strong></h2>
+<h3 id="indicateurs-a-communiquer"><strong>Indicateurs à Communiquer</strong></h3>
+<p>Pour convaincre les décideurs et les partenaires techniques et financiers, les analyses CLIMADA doivent mettre en avant :</p>
+<ul>
+<li><strong>La PAM en % du PIB</strong> : Permet de contextualiser l'ampleur du risque à l'échelle macroéconomique.</li>
+<li><strong>Le Temps de Retour sur Investissement</strong> : Indicateur simple et compréhensible pour arbitrer entre projets.</li>
+<li><strong>Le Ratio Bénéfice/Coût</strong> : Un ratio &gt; 1 signifie que le projet d'adaptation est économiquement rentable.</li>
+<li><strong>La VAN (Valeur Actuelle Nette)</strong> : Permet de comparer des projets avec des durées de vie différentes.</li>
+</ul>
+<h3 id="recommandations"><strong>Recommandations</strong></h3>
+<p>✅ <strong>Documenter toutes les hypothèses</strong> : Sources de données, fonctions de vulnérabilité, scénarios climatiques utilisés.</p>
+<p>✅ <strong>Réaliser des analyses de sensibilité</strong> : Tester comment les résultats varient si on modifie une hypothèse clé.</p>
+<p>✅ <strong>Impliquer les parties prenantes</strong> : Les analyses sont plus robustes et acceptées si elles sont co-construites avec les experts sectoriels.</p>
+<p>✅ <strong>Actualiser régulièrement</strong> : Les données climatiques, économiques et démographiques évoluent. Les analyses doivent être mises à jour périodiquement.</p>
+<hr />
+<p><em>Les outils et méthodologies présentés dans ce chapitre permettent à la DGE de transformer les résultats techniques de CLIMADA en recommandations stratégiques concrètes pour la planification économique et budgétaire.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../chapitre3_tp/" class="btn btn-neutral float-left" title="Chapitre 3 - Travaux Pratiques"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../chapitre5_depannage/" class="btn btn-neutral float-right" title="Chapitre 5 - Dépannage">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../chapitre3_tp/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../chapitre5_depannage/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
