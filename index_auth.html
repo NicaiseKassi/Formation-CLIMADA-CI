@@ -152,85 +152,93 @@
       const authStatus = document.getElementById("auth-status");
       const SESSION_KEY = "climada_manual_session";
 
-      // Nettoyer la session au chargement
-      localStorage.removeItem(SESSION_KEY);
-
-      console.log("=== PAGE D'AUTHENTIFICATION CHARGÉE ===");
+      console.log("=== PAGE D'AUTHENTIFICATION ===");
 
       if (window.netlifyIdentity) {
-        let isLoggingIn = false;
-        let hasInitialized = false;
-
-        // Fonction pour afficher le modal de connexion
+        
+        // Afficher le modal de connexion
         function showLoginModal() {
           authStatus.innerHTML = `
             <p class="message">🔒 Accès réservé aux participants de la formation</p>
             <p class="message">Veuillez vous connecter avec vos identifiants</p>
           `;
-          netlifyIdentity.open();
+          setTimeout(() => {
+            netlifyIdentity.open();
+          }, 500);
         }
 
-        // ÉVÉNEMENT : Initialisation
+        // Au chargement, vérifier l'utilisateur
         netlifyIdentity.on("init", (user) => {
-          console.log("Init - Utilisateur:", user ? user.email : "aucun");
-
-          // Ne traiter qu'une seule fois
-          if (hasInitialized) {
-            console.log("Déjà initialisé, ignorer");
-            return;
-          }
-          hasInitialized = true;
-
-          // Nettoyer les tokens dans l'URL
+          console.log("Init - User:", user ? user.email : "none");
+          
+          // Nettoyer le hash de l'URL
           if (window.location.hash) {
-            console.log("Nettoyage du hash URL");
             window.history.replaceState(null, null, window.location.pathname);
           }
-
-          // Si utilisateur déjà connecté (ex: vient de confirmer email)
-          if (user && !isLoggingIn) {
-            console.log("Utilisateur détecté au chargement - déconnexion");
-            netlifyIdentity.logout();
-            setTimeout(showLoginModal, 500);
-          } else if (!user) {
+          
+          if (!user) {
+            // Pas d'utilisateur - montrer le modal
             showLoginModal();
+          } else {
+            // Utilisateur déjà connecté - vérifier s'il vient de confirmer
+            const fromConfirmation = document.referrer.includes('netlify') || 
+                                     window.location.search.includes('confirmation');
+            
+            if (fromConfirmation) {
+              // Vient de confirmer - demander de se reconnecter
+              console.log("Confirmation détectée - demander login");
+              authStatus.innerHTML = `
+                <p class="message success">✅ Email confirmé !</p>
+                <p class="message">Veuillez vous connecter pour continuer</p>
+              `;
+              netlifyIdentity.logout();
+              setTimeout(showLoginModal, 2000);
+            } else {
+              // Déjà authentifié - rediriger
+              console.log("Déjà connecté - redirection");
+              authStatus.innerHTML = `
+                <p class="message">✅ Vous êtes déjà connecté</p>
+                <p class="message">Redirection...</p>
+              `;
+              setTimeout(() => {
+                window.location.href = "/chapitre1_installation/";
+              }, 500);
+            }
           }
         });
 
-        // ÉVÉNEMENT : Après signup (confirmation d'email)
+        // Événement : Signup
         netlifyIdentity.on("signup", (user) => {
-          console.log("Signup détecté:", user.email);
+          console.log("Signup:", user.email);
           authStatus.innerHTML = `
             <p class="message success">✅ Compte créé !</p>
             <p class="message">Veuillez maintenant vous connecter</p>
           `;
-          netlifyIdentity.logout();
-          setTimeout(showLoginModal, 2000);
+          setTimeout(() => {
+            netlifyIdentity.open('login');
+          }, 1500);
         });
 
-        // ÉVÉNEMENT : Après login
+        // Événement : Login réussi
         netlifyIdentity.on("login", (user) => {
           console.log("Login réussi:", user.email);
-          isLoggingIn = true;
 
-          // Marquer la session comme authentifiée
+          // Créer la session
           localStorage.setItem(SESSION_KEY, Date.now().toString());
-
+          
           // Fermer le modal
           netlifyIdentity.close();
 
+          // Message de succès
           authStatus.innerHTML = `
-            <p class="message success">✅ Authentification réussie !</p>
-            <p class="message">Bienvenue ${
-              user.user_metadata.full_name || user.email
-            }</p>
-            <p class="message">Redirection vers le manuel...</p>
+            <p class="message success">✅ Connexion réussie !</p>
+            <p class="message">Bienvenue ${user.user_metadata.full_name || user.email}</p>
+            <p class="message">Chargement du manuel...</p>
           `;
 
-          // Redirection immédiate
-          setTimeout(() => {
-            window.location.href = "/chapitre1_installation/";
-          }, 1000);
+          // Redirection
+          console.log("Redirection vers le manuel...");
+          window.location.href = "/chapitre1_installation/";
         });
 
         // ÉVÉNEMENT : Fermeture du modal
