@@ -171,15 +171,26 @@
 
       <div class="info-box">
         <p><strong>📧 Première connexion ?</strong></p>
-        <p><strong style="color: #c62828;">⚠️ IMPORTANT :</strong> Avant de vous connecter, vous devez :</p>
-        <ol style="margin: 10px 0 10px 20px; line-height: 1.8;">
+        <p>
+          <strong style="color: #c62828">⚠️ IMPORTANT :</strong> Avant de vous
+          connecter, vous devez :
+        </p>
+        <ol style="margin: 10px 0 10px 20px; line-height: 1.8">
           <li>Recevoir l'email d'invitation</li>
           <li><strong>Cliquer sur le lien dans l'email</strong></li>
           <li>Définir votre mot de passe</li>
           <li>Puis revenir ici pour vous connecter</li>
         </ol>
-        <p style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px;">
-          💡 Si vous voyez "Email not confirmed", c'est que vous n'avez pas encore cliqué sur le lien de confirmation dans votre email !
+        <p
+          style="
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+          "
+        >
+          💡 Si vous voyez "Email not confirmed", c'est que vous n'avez pas
+          encore cliqué sur le lien de confirmation dans votre email !
         </p>
       </div>
 
@@ -218,6 +229,13 @@
         console.log("Ouverture connexion Netlify Identity");
         netlifyIdentity.open("login");
       }
+      
+      // Vérifier si c'est un lien de confirmation
+      const hash = window.location.hash;
+      if (hash && (hash.includes('confirmation_token') || hash.includes('invite_token') || hash.includes('recovery_token'))) {
+        console.log('🔗 Lien de confirmation détecté dans URL');
+        showStatus("📧 Traitement de votre confirmation...", "info");
+      }
 
       // Événements Netlify Identity
       if (window.netlifyIdentity) {
@@ -227,6 +245,7 @@
           console.log("Init - Utilisateur:", user ? user.email : "aucun");
           if (user) {
             // Déjà connecté, redirection immédiate
+            console.log("✅ Utilisateur détecté après init");
             localStorage.setItem(SESSION_KEY, Date.now().toString());
             showStatus(
               "✅ Connecté ! Redirection vers le manuel...",
@@ -234,14 +253,25 @@
             );
             setTimeout(() => {
               window.location.href = "/chapitre1_installation/";
-            }, 800);
+            }, 1000);
           }
         });
 
         netlifyIdentity.on("login", (user) => {
-          console.log("✅ Connexion réussie:", user.email);
+          console.log("✅ Événement login déclenché:", user.email);
           localStorage.setItem(SESSION_KEY, Date.now().toString());
           showStatus("✅ Connexion réussie ! Accès au manuel...", "success");
+          netlifyIdentity.close();
+          setTimeout(() => {
+            window.location.href = "/chapitre1_installation/";
+          }, 1000);
+        });
+        
+        netlifyIdentity.on("signup", (user) => {
+          console.log("✅ Événement signup déclenché:", user.email);
+          // Après signup via lien d'invitation, l'utilisateur est automatiquement connecté
+          localStorage.setItem(SESSION_KEY, Date.now().toString());
+          showStatus("✅ Compte activé ! Accès au manuel...", "success");
           netlifyIdentity.close();
           setTimeout(() => {
             window.location.href = "/chapitre1_installation/";
@@ -250,24 +280,43 @@
 
         netlifyIdentity.on("error", (err) => {
           console.error("❌ Erreur:", err);
-          
+
           let errorMsg = "❌ Erreur de connexion. Vérifiez vos identifiants.";
-          
+
           if (err.message && err.message.includes("Email not confirmed")) {
-            errorMsg = "❌ VOTRE EMAIL N'EST PAS CONFIRMÉ !\n\n" +
-                      "📧 Allez dans votre boîte mail, cherchez l'email de Netlify Identity, " +
-                      "et CLIQUEZ SUR LE LIEN DE CONFIRMATION avant de vous connecter.\n\n" +
-                      "Puis revenez ici et réessayez.";
-          } else if (err.message && (err.message.includes("Invalid") || err.message.includes("Wrong"))) {
-            errorMsg = "❌ Email ou mot de passe incorrect.\n\n" +
-                      "Vérifiez que vous avez bien défini votre mot de passe en cliquant sur le lien dans l'email d'invitation.";
+            errorMsg =
+              "❌ VOTRE EMAIL N'EST PAS CONFIRMÉ !\n\n" +
+              "📧 Allez dans votre boîte mail, cherchez l'email de Netlify Identity, " +
+              "et CLIQUEZ SUR LE LIEN DE CONFIRMATION avant de vous connecter.\n\n" +
+              "Puis revenez ici et réessayez.";
+          } else if (
+            err.message &&
+            (err.message.includes("Invalid") || err.message.includes("Wrong"))
+          ) {
+            errorMsg =
+              "❌ Email ou mot de passe incorrect.\n\n" +
+              "Vérifiez que vous avez bien défini votre mot de passe en cliquant sur le lien dans l'email d'invitation.";
           } else if (err.message && err.message.includes("not found")) {
-            errorMsg = "❌ Cet email n'est pas dans la liste des participants invités.\n\n" +
-                      "Contactez les formateurs pour obtenir une invitation.";
+            errorMsg =
+              "❌ Cet email n'est pas dans la liste des participants invités.\n\n" +
+              "Contactez les formateurs pour obtenir une invitation.";
           }
-          
+
           showStatus(errorMsg, "error");
         });
+        
+        // Fallback : vérifier après 3 secondes si un utilisateur est connecté
+        setTimeout(() => {
+          const user = netlifyIdentity.currentUser();
+          if (user && window.location.pathname === '/index_auth.html') {
+            console.log("⏱️ Fallback: Utilisateur détecté après 3s, redirection");
+            localStorage.setItem(SESSION_KEY, Date.now().toString());
+            showStatus("✅ Authentifié ! Redirection...", "success");
+            setTimeout(() => {
+              window.location.href = "/chapitre1_installation/";
+            }, 500);
+          }
+        }, 3000);
       } else {
         console.error("Widget Netlify Identity non chargé !");
         showStatus("⚠️ Erreur de chargement. Rechargez la page.", "error");
