@@ -1,0 +1,36 @@
+# Dossier MkDocs complet
+MkDocs/
+
+# Fichiers Markdown
+*.md
+
+# Dossiers de build générés
+site/
+build/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*~
+
+# Fichiers de lock
+.~lock.*#
+
+# Environnements Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE et éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
