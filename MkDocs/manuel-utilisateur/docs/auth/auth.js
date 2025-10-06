@@ -12,7 +12,7 @@ const AUTHORIZED_USERS = [
   "nicaisekassi", // En cas de variation de casse
   // Ajoutez ici les usernames GitHub des 27 participants
   // Exemples pour les ministères et institutions :
-  // 'ministere-environnement',
+  "matrice95",
   // 'dge-cote-ivoire',
   // 'participant-ddt',
   // 'participant-agriculture',
