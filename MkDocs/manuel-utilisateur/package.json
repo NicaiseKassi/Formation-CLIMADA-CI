@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Documentation CLIMADA pour la formation en Côte d'Ivoire",
   "scripts": {
-    "vercel-build": "python3 -m pip install --upgrade pip && pip install -r requirements.txt && mkdocs build",
+    "vercel-build": "./build.sh",
     "build": "mkdocs build",
     "dev": "mkdocs serve"
   },
