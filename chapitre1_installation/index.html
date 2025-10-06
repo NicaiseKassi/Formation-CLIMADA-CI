@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://formation-climada-dge.netlify.app/chapitre1_installation/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://formation-climada-ci.vercel.app/chapitre1_installation/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>Chapitre 1 - Installation - Manuel d'Utilisation CLIMADA-CI</title>
     <link rel="stylesheet" href="../css/theme.css" />
@@ -96,7 +96,9 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#41-installation-du-package-principal">4.1 Installation du package principal</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#42-test-de-linstallation-climada">4.2 Test de l'installation CLIMADA</a>
+    <li class="toctree-l4"><a class="reference internal" href="#42-verification-de-la-version-climada-installee">4.2 Vérification de la version CLIMADA installée</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#43-test-complet-des-modules-climada">4.3 Test complet des modules CLIMADA</a>
     </li>
         </ul>
     </li>
@@ -385,7 +387,36 @@ conda install -c conda-forge folium -y
 conda install -c conda-forge jupyter -y
 conda install -c conda-forge jupyterlab -y
 </code></pre>
-<h4 id="42-test-de-linstallation-climada"><strong>4.2 Test de l'installation CLIMADA</strong></h4>
+<h4 id="42-verification-de-la-version-climada-installee"><strong>4.2 Vérification de la version CLIMADA installée</strong></h4>
+<p><strong>🔍 Méthode 1 : Ligne de commande simple</strong></p>
+<pre><code class="language-bash"># Commande rapide pour voir la version
+python -c &quot;import climada; print('CLIMADA version:', climada.__version__)&quot;
+</code></pre>
+<p><strong>Résultat attendu :</strong></p>
+<pre><code>CLIMADA version: 4.1.0
+</code></pre>
+<p><strong>🔍 Méthode 2 : Dans un script Python</strong></p>
+<pre><code class="language-python"># Ouvrir Python ou Jupyter et exécuter :
+import climada
+print(f&quot;Version de CLIMADA installée : {climada.__version__}&quot;)
+print(f&quot;Répertoire d'installation : {climada.__file__}&quot;)
+</code></pre>
+<p><strong>🔍 Méthode 3 : Avec informations détaillées</strong></p>
+<pre><code class="language-python">import climada
+import sys
+import numpy as np
+import pandas as pd
+
+print(&quot;=&quot; * 50)
+print(&quot;INFORMATIONS D'INSTALLATION CLIMADA&quot;)
+print(&quot;=&quot; * 50)
+print(f&quot;Version CLIMADA : {climada.__version__}&quot;)
+print(f&quot;Version Python : {sys.version}&quot;)
+print(f&quot;Version NumPy : {np.__version__}&quot;)
+print(f&quot;Version Pandas : {pd.__version__}&quot;)
+print(&quot;=&quot; * 50)
+</code></pre>
+<h4 id="43-test-complet-des-modules-climada"><strong>4.3 Test complet des modules CLIMADA</strong></h4>
 <pre><code class="language-bash">python -c &quot;import climada; print(f'CLIMADA version: {climada.__version__}')&quot;
 python -c &quot;from climada.hazard import Hazard; print('Import Hazard OK')&quot;
 python -c &quot;from climada.entity import Exposures; print('Import Exposures OK')&quot;
@@ -670,8 +701,6 @@ NATIONAL_RESOLUTION_KM = 5.0 # 5km pour analyses nationales
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
-      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-      <script src="../assets/js/auth-guard.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {
