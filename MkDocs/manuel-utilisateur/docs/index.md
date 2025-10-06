@@ -1,5 +1,7 @@
 # **Manuel d'Utilisation de CLIMADA**
 
+<div id="user-info" style="display: none;"></div>
+
 ## <span style="color:red;">**Guide pour l'Évaluation des Risques Climatiques et leur Intégration dans l'Analyse Économique en Côte d'Ivoire**</span>
 
 ### **Introduction**
