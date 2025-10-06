@@ -2,6 +2,10 @@
 
 Bienvenue dans le dépôt officiel du matériel pédagogique pour la formation sur le modèle d'évaluation des risques climatiques **CLIMADA**, organisée en Côte d'Ivoire.
 
+## 📖 Documentation en Ligne
+
+La documentation complète est disponible en ligne : **[https://formation-climada-dge.netlify.app/](https://formation-climada-dge.netlify.app/)**
+
 ## Objectif de ce dépôt
 
 Ce dépôt centralise tous les outils et données nécessaires pour participer activement à la formation. L'objectif est de fournir un environnement de travail standardisé et reproductible pour tous les participants, afin de se concentrer sur l'apprentissage de l'analyse des risques climatiques.

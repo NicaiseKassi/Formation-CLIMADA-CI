@@ -1,9 +1,11 @@
-# Dossier MkDocs complet
-MkDocs/
+# Dossier MkDocs général (sauf le dossier de déploiement)
+MkDocs/*
+!MkDocs/manuel-utilisateur/
 
-# Fichiers Markdown (sauf README.md)
+# Fichiers Markdown (sauf README.md et ceux dans manuel-utilisateur)
 *.md
 !README.md
+!MkDocs/manuel-utilisateur/**/*.md
 
 # Documents Office
 *.docx
