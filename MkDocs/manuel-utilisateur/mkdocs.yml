@@ -1,6 +1,6 @@
 site_name: Manuel d'Utilisation CLIMADA-CI
 site_description: "Guide d'utilisation et de formation pour le modèle d'évaluation des risques climatiques CLIMADA."
-site_url: https://formation-climada-dge.netlify.app/
+site_url: https://formation-climada-ci.vercel.app/
 use_directory_urls: true
 
 theme:
