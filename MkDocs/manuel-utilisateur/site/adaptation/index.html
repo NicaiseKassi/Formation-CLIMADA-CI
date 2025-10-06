@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://formation-climada-dge.netlify.app/adaptation/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>De l'Analyse à la Décision Économique - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "De l\u0027Analyse \u00e0 la D\u00e9cision \u00c9conomique";
+        var mkdocs_page_input_path = "adaptation.md";
+        var mkdocs_page_url = "/adaptation/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre1_installation/">Chapitre 1 - Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre2_donnees/">Chapitre 2 - Les Données d'Entrée</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre3_tp/">Chapitre 3 - Travaux Pratiques</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre4_decision/">Chapitre 4 - Aide à la Décision</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">De l'Analyse à la Décision Économique</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="de-lanalyse-a-la-decision-economique">De l'Analyse à la Décision Économique</h1>
+<p>Ce chapitre explique comment transformer les sorties techniques de CLIMADA en analyses économiques directement utilisables par la DGE.</p>
+<h2 id="41-mener-une-analyse-couts-benefices-acb-robuste">4.1 Mener une Analyse Coûts-Bénéfices (ACB) Robuste</h2>
+<p>L'ACB est l'outil par excellence pour justifier économiquement les investissements en adaptation.</p>
+<h3 id="calculer-le-cout-de-linaction">Calculer le Coût de l'Inaction</h3>
+<p>La Perte Annuelle Moyenne (PAM) calculée par CLIMADA est le point de départ. C'est le coût que l'économie subit en moyenne chaque année si rien n'est fait.</p>
+<h3 id="modeliser-le-benefice-de-laction">Modéliser le Bénéfice de l'Action</h3>
+<p>Pour un projet d'adaptation donné (ex: une digue), on modélise son effet sur l'aléa. On recalcule ensuite la PAM "avec projet". Le bénéfice annuel du projet est simplement la différence entre la PAM sans projet et la PAM avec projet.</p>
+<h3 id="prendre-la-decision">Prendre la Décision</h3>
+<p>En comparant le coût de l'investissement aux bénéfices annuels actualisés, on peut calculer des indicateurs standards (VAN, TRI, temps de retour) pour classer et prioriser les projets d'investissement public.</p>
+<h2 id="42-integration-dans-la-declaration-des-risques-budgetaires-drb">4.2 Intégration dans la Déclaration des Risques Budgétaires (DRB)</h2>
+<p>CLIMADA fournit les chiffres exacts nécessaires pour la DRB et pour le dialogue avec les partenaires financiers.</p>
+<ul>
+<li>
+<p><strong>La PAM</strong> doit être présentée dans la DRB comme un passif contingent récurrent. C'est le montant moyen que l'État doit anticiper chaque année pour couvrir les impacts climatiques.</p>
+</li>
+<li>
+<p><strong>La PMP</strong> (pour un événement rare, ex: centennal) représente un choc budgétaire extrême. Ce chiffre est fondamental pour les stress-tests de la dette et pour justifier la mise en place de mécanismes de financement des catastrophes (fonds de contingence, assurance paramétrique).</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script src="../assets/js/auth-guard.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

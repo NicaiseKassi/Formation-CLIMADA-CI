@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://formation-climada-dge.netlify.app/chapitre3_tp/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Chapitre 3 - Travaux Pratiques - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chapitre 3 - Travaux Pratiques";
+        var mkdocs_page_input_path = "chapitre3_tp.md";
+        var mkdocs_page_url = "/chapitre3_tp/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre1_installation/">Chapitre 1 - Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre2_donnees/">Chapitre 2 - Les Données d'Entrée</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Chapitre 3 - Travaux Pratiques</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tp-1-inondations-urbaines-a-abidjan-2018">TP 1 : Inondations Urbaines à Abidjan (2018)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#la-question-economique">🎯 La Question Économique</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lapproche-de-modelisation">🔍 L'Approche de Modélisation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#les-etapes-cles">📋 Les Étapes Clés</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linterpretation-economique">💡 L'Interprétation Économique</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tp-2-secheresse-agricole-et-impact-sur-lanacarde-2016">TP 2 : Sécheresse Agricole et Impact sur l'Anacarde (2016)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#la-question-economique_1">🎯 La Question Économique</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lapproche-de-modelisation_1">🔍 L'Approche de Modélisation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#les-etapes-cles_1">📋 Les Étapes Clés</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linterpretation-economique_1">💡 L'Interprétation Économique</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tp-3-erosion-cotiere-et-risques-pour-le-patrimoine-a-grand-bassam">TP 3 : Érosion Côtière et Risques pour le Patrimoine à Grand-Bassam</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#la-question-economique_2">🎯 La Question Économique</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lapproche-de-modelisation_2">🔍 L'Approche de Modélisation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#les-etapes-cles_2">📋 Les Étapes Clés</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linterpretation-economique_2">💡 L'Interprétation Économique</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recommandations-pratiques">📝 Recommandations Pratiques</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pour-reussir-les-tp">Pour Réussir les TP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#livrables-attendus">Livrables Attendus</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre4_decision/">Chapitre 4 - Aide à la Décision</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Chapitre 3 - Travaux Pratiques</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Breadcrumb Navigation">
+        <a href="../chapitre2_donnees/" class="btn btn-neutral float-left" title="Chapitre 2 - Les Données d'Entrée"><span class="icon icon-circle-arrow-left" aria-hidden="true"></span> Previous</a>
+        <a href="../chapitre4_decision/" class="btn btn-neutral float-right" title="Chapitre 4 - Aide à la Décision">Next <span class="icon icon-circle-arrow-right" aria-hidden="true"></span></a>
+    </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chapitre-3-travaux-pratiques-detailles"><strong>Chapitre 3 : Travaux Pratiques Détaillés</strong></h1>
+<p>Cette section est le cœur pratique du manuel. Pour chaque TP, nous suivons une démarche structurée :</p>
+<ol>
+<li><strong>La Question Économique :</strong> Quel problème cherchons-nous à résoudre ?</li>
+<li><strong>L'Approche de Modélisation :</strong> Comment allons-nous utiliser CLIMADA pour y répondre ?</li>
+<li><strong>Les Étapes Clés :</strong> Le guide pas à pas avec le code.</li>
+<li><strong>L'Interprétation Économique :</strong> Que signifient les résultats pour la DGE ?</li>
+</ol>
+<hr />
+<h2 id="tp-1-inondations-urbaines-a-abidjan-2018"><strong>TP 1 : Inondations Urbaines à Abidjan (2018)</strong></h2>
+<h3 id="la-question-economique"><strong>🎯 La Question Économique</strong></h3>
+<p>Quel a été le coût économique direct des inondations de juin 2018 sur le bâti à Abidjan, et notre modèle peut-il le reproduire de manière crédible ?</p>
+<h3 id="lapproche-de-modelisation"><strong>🔍 L'Approche de Modélisation</strong></h3>
+<p>Nous allons superposer une carte de l'aléa (hauteur d'eau) avec une carte de l'exposition (valeur des bâtiments) et appliquer une fonction de vulnérabilité pour calculer les dommages. Le résultat sera comparé aux estimations de l'ONPC pour valider le modèle.</p>
+<h3 id="les-etapes-cles"><strong>📋 Les Étapes Clés</strong></h3>
+<p><strong>Fichier Notebook :</strong> <code>TP1_Inondations_Abidjan_2018_Complet.ipynb</code></p>
+<p>Le notebook vous guidera à travers les étapes suivantes :</p>
+<ol>
+<li>
+<p><strong>Création d'un aléa synthétique d'inondation</strong></p>
+</li>
+<li>
+<p>Chargement des données de hauteur d'eau (juin 2018)</p>
+</li>
+<li>Géoréférencement et projection sur Abidjan</li>
+<li>Définition de l'intensité (hauteur d'eau en mètres)</li>
+<li>
+<p>Calcul de la période de retour estimée</p>
+</li>
+<li>
+<p><strong>Génération de l'exposition économique avec LitPop</strong></p>
+</li>
+<li>
+<p>Utilisation de la méthodologie LitPop (Lumières nocturnes + Population)</p>
+</li>
+<li>Calibration sur les données économiques d'Abidjan</li>
+<li>Attribution de valeurs aux actifs bâtis par zone</li>
+<li>
+<p>Carte de distribution spatiale de la valeur économique</p>
+</li>
+<li>
+<p><strong>Définition d'une fonction de dommage hauteur-dégâts</strong></p>
+</li>
+<li>
+<p>Construction de la courbe de vulnérabilité (0-100% de perte)</p>
+</li>
+<li>Relation entre hauteur d'eau et taux de dommage</li>
+<li>
+<p>Calibration sur données empiriques (si disponibles)</p>
+</li>
+<li>
+<p><strong>Calcul et cartographie des dommages totaux</strong></p>
+</li>
+<li>
+<p>Application de la fonction Impact de CLIMADA</p>
+</li>
+<li>Calcul des dommages par zone administrative</li>
+<li>Génération de cartes de dommages</li>
+<li>
+<p>Calcul de la <strong>Perte Maximale Probable (PMP)</strong> pour cet événement</p>
+</li>
+<li>
+<p><strong>Analyse critique des résultats</strong></p>
+</li>
+<li>Comparaison avec les données historiques (ONPC, BNETD)</li>
+<li>Analyse de sensibilité aux hypothèses</li>
+<li>Identification des zones les plus vulnérables</li>
+</ol>
+<h3 id="linterpretation-economique"><strong>💡 L'Interprétation Économique</strong></h3>
+<p>Ce TP permet de calibrer nos outils et de produire une première estimation de la <strong>Perte Maximale Probable (PMP)</strong> pour un événement de cette ampleur, une donnée clé pour :</p>
+<ul>
+<li>Dimensionner les fonds de contingence</li>
+<li>Justifier les investissements dans les infrastructures de drainage</li>
+<li>Évaluer le coût-bénéfice des mesures d'adaptation</li>
+</ul>
+<hr />
+<h2 id="tp-2-secheresse-agricole-et-impact-sur-lanacarde-2016"><strong>TP 2 : Sécheresse Agricole et Impact sur l'Anacarde (2016)</strong></h2>
+<h3 id="la-question-economique_1"><strong>🎯 La Question Économique</strong></h3>
+<p>Quelles ont été les pertes de revenus pour la filière anacarde dues à la sécheresse de 2016 dans le Nord de la Côte d'Ivoire, et comment cela a-t-il impacté l'économie régionale ?</p>
+<h3 id="lapproche-de-modelisation_1"><strong>🔍 L'Approche de Modélisation</strong></h3>
+<p>Nous allons créer une carte de l'aléa (indice de sécheresse) et la croiser avec une carte d'exposition représentant la valeur de la production d'anacarde. Une fonction de vulnérabilité agronomique (perte de rendement vs. stress hydrique) nous donnera l'impact économique.</p>
+<h3 id="les-etapes-cles_1"><strong>📋 Les Étapes Clés</strong></h3>
+<p><strong>Fichier Notebook :</strong> <code>TP2_Secheresse_Agriculture_2016_Complet.ipynb</code></p>
+<p>Le notebook vous montrera comment :</p>
+<ol>
+<li>
+<p><strong>Modéliser un aléa de sécheresse basé sur un indice synthétique</strong></p>
+</li>
+<li>
+<p>Calcul du SPI (Standardized Precipitation Index) ou SPEI</p>
+</li>
+<li>Données climatiques issues de SODEXAM ou réanalyses globales</li>
+<li>Identification des zones affectées (seuils de sécheresse)</li>
+<li>
+<p>Périodes critiques pour le développement du cacao</p>
+</li>
+<li>
+<p><strong>Créer une exposition agricole</strong></p>
+</li>
+<li>
+<p>Cartographie des zones de production de cacao (Nord CI)</p>
+</li>
+<li>Valeur de la production par hectare et par région</li>
+<li>Données de l'ANADER, du Conseil Café-Cacao</li>
+<li>
+<p>Intégration de données économiques (prix, volumes)</p>
+</li>
+<li>
+<p><strong>Construire une fonction de dommage agronomique</strong></p>
+</li>
+<li>
+<p>Relation entre stress hydrique et perte de rendement</p>
+</li>
+<li>Courbe de vulnérabilité basée sur études agronomiques</li>
+<li>Seuils critiques de précipitation</li>
+<li>
+<p>Prise en compte des stades phénologiques sensibles</p>
+</li>
+<li>
+<p><strong>Calculer les pertes économiques totales</strong></p>
+</li>
+<li>
+<p>Application du modèle Impact de CLIMADA</p>
+</li>
+<li>Calcul des pertes par département (Korhogo, Ferkessédougou, etc.)</li>
+<li>Estimation des pertes en revenus agricoles</li>
+<li>
+<p>Impact sur les recettes d'exportation</p>
+</li>
+<li>
+<p><strong>Analyser l'impact sur la filière</strong></p>
+</li>
+<li>Comparaison avec les statistiques officielles de production</li>
+<li>Analyse de l'impact sur les revenus des producteurs</li>
+<li>Conséquences sur les recettes fiscales (droits d'exportation)</li>
+<li>Recommandations pour la politique agricole</li>
+</ol>
+<h3 id="linterpretation-economique_1"><strong>💡 L'Interprétation Économique</strong></h3>
+<p>Ce TP quantifie la sensibilité d'un secteur clé aux chocs climatiques. Le résultat est une brique essentielle pour :</p>
+<ul>
+<li>Ajuster les prévisions de croissance du PIB agricole</li>
+<li>Modéliser l'impact sur les recettes fiscales</li>
+<li>Justifier les investissements dans l'irrigation et l'adaptation variétale</li>
+<li>Évaluer la nécessité de mécanismes d'assurance agricole</li>
+</ul>
+<hr />
+<h2 id="tp-3-erosion-cotiere-et-risques-pour-le-patrimoine-a-grand-bassam"><strong>TP 3 : Érosion Côtière et Risques pour le Patrimoine à Grand-Bassam</strong></h2>
+<h3 id="la-question-economique_2"><strong>🎯 La Question Économique</strong></h3>
+<p>Quelle est la valeur du capital (touristique, résidentiel, patrimonial) menacé par l'érosion côtière à Grand-Bassam à un horizon 2050 si aucune mesure n'est prise ?</p>
+<h3 id="lapproche-de-modelisation_2"><strong>🔍 L'Approche de Modélisation</strong></h3>
+<p>C'est une analyse prospective. L'aléa est une carte binaire de la future zone "perdue" à cause de l'érosion (basée sur modèles de recul du trait de côte). L'exposition est la valeur des actifs situés dans cette zone. La vulnérabilité est de 100% (perte totale des actifs).</p>
+<h3 id="les-etapes-cles_2"><strong>📋 Les Étapes Clés</strong></h3>
+<p><strong>Fichier Notebook :</strong> <code>TP3_Erosion_Cotiere_Grand_Bassam.ipynb</code></p>
+<p>Ce cas prospectif vous apprendra à :</p>
+<ol>
+<li>
+<p><strong>Définir un aléa binaire représentant la future zone d'érosion</strong></p>
+</li>
+<li>
+<p>Données de recul du trait de côte (études BNETD, projets côtiers)</p>
+</li>
+<li>Scénarios d'élévation du niveau de la mer (SSP scenarios)</li>
+<li>Délimitation de la zone à risque à horizon 2050</li>
+<li>
+<p>Création d'un masque géographique d'exposition</p>
+</li>
+<li>
+<p><strong>Générer l'exposition économique de la zone côtière</strong></p>
+</li>
+<li>
+<p>Inventaire des actifs dans la zone littorale :</p>
+<ul>
+<li>Hôtels et infrastructures touristiques</li>
+<li>Résidences et habitations</li>
+<li>Patrimoine culturel (Ville historique UNESCO)</li>
+<li>Infrastructures publiques (routes, réseaux)</li>
+</ul>
+</li>
+<li>Estimation de la valeur des actifs par catégorie</li>
+<li>
+<p>Cartographie de la distribution spatiale</p>
+</li>
+<li>
+<p><strong>Appliquer une fonction de dommage de perte totale</strong></p>
+</li>
+<li>
+<p>Hypothèse : 100% de perte pour les actifs dans la zone d'érosion</p>
+</li>
+<li>Pas de gradation (actif détruit ou préservé)</li>
+<li>
+<p>Calcul direct de la valeur à risque</p>
+</li>
+<li>
+<p><strong>Calculer la valeur totale des actifs à risque</strong></p>
+</li>
+<li>
+<p>Agrégation des pertes potentielles par catégorie</p>
+</li>
+<li>Calcul du <strong>coût de l'inaction</strong> (montant total menacé)</li>
+<li>Analyse de scénarios (optimiste, réaliste, pessimiste)</li>
+<li>
+<p>Cartographie interactive des zones à risque prioritaires</p>
+</li>
+<li>
+<p><strong>Analyse coût-bénéfice des mesures de protection</strong></p>
+</li>
+<li>Coût estimé des ouvrages de protection (digues, épis, brise-lames)</li>
+<li>Comparaison coût de protection vs. valeur sauvegardée</li>
+<li>Calcul du ratio bénéfice/coût</li>
+<li>Recommandations pour la planification territoriale</li>
+</ol>
+<h3 id="linterpretation-economique_2"><strong>💡 L'Interprétation Économique</strong></h3>
+<p>Le résultat de ce TP est une estimation du <strong>coût de l'inaction</strong> à horizon 2050. C'est un argument puissant pour :</p>
+<ul>
+<li>Justifier les investissements préventifs dans la protection côtière</li>
+<li>Orienter les politiques d'aménagement du territoire</li>
+<li>Soutenir les demandes de financement international (Fonds Vert Climat)</li>
+<li>Prioriser les zones d'intervention (Grand-Bassam, mais aussi Jacqueville, Assinie)</li>
+<li>Évaluer les options de relocalisation vs. protection</li>
+</ul>
+<hr />
+<h2 id="recommandations-pratiques"><strong>📝 Recommandations Pratiques</strong></h2>
+<h3 id="pour-reussir-les-tp"><strong>Pour Réussir les TP</strong></h3>
+<p>✅ <strong>Travaillez par étapes</strong> : Ne sautez pas les phases de compréhension des données</p>
+<p>✅ <strong>Documentez vos choix</strong> : Notez toutes les hypothèses et sources de données</p>
+<p>✅ <strong>Visualisez à chaque étape</strong> : Les cartes vous aident à identifier les erreurs</p>
+<p>✅ <strong>Comparez avec la réalité</strong> : Confrontez vos résultats aux données officielles</p>
+<p>✅ <strong>Analysez la sensibilité</strong> : Testez comment vos résultats varient si vous changez une hypothèse</p>
+<h3 id="livrables-attendus"><strong>Livrables Attendus</strong></h3>
+<p>Pour chaque TP, vous devrez produire :</p>
+<ol>
+<li><strong>Un notebook Jupyter</strong> complet et commenté</li>
+<li><strong>Des cartes</strong> de l'aléa, de l'exposition et de l'impact</li>
+<li><strong>Un rapport synthétique</strong> (2-3 pages) avec :</li>
+<li>Résultats chiffrés (PAM, PMP, valeur à risque)</li>
+<li>Interprétation économique</li>
+<li>Recommandations pour la politique publique</li>
+<li>Limites et incertitudes de l'analyse</li>
+</ol>
+<hr />
+<p><em>Le code détaillé et les fichiers de données pour chaque TP se trouvent dans les notebooks Jupyter fournis avec la formation.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../chapitre2_donnees/" class="btn btn-neutral float-left" title="Chapitre 2 - Les Données d'Entrée"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../chapitre4_decision/" class="btn btn-neutral float-right" title="Chapitre 4 - Aide à la Décision">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../chapitre2_donnees/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../chapitre4_decision/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script src="../assets/js/auth-guard.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

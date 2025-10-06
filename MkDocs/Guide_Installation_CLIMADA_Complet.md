@@ -1,6 +1,7 @@
 # Guide d'Installation CLIMADA - Formation DGE Côte d'Ivoire
 
 ## 🎯 **Objectif**
+
 Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour la formation DGE.
 
 ---
@@ -8,6 +9,7 @@ Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour
 ## 🖥️ **INSTALLATION SUR WINDOWS**
 
 ### **Prérequis Système**
+
 - **OS** : Windows 10 (64-bit) ou Windows 11
 - **RAM** : 8 GB minimum, 16 GB recommandé
 - **Espace disque** : 20 GB libres
@@ -17,6 +19,7 @@ Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour
 ### **Étape 1 : Installation d'Anaconda**
 
 #### **1.1 Téléchargement**
+
 ```bash
 # Aller sur https://www.anaconda.com/products/distribution
 # Télécharger "Anaconda Individual Edition" pour Windows
@@ -24,6 +27,7 @@ Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour
 ```
 
 #### **1.2 Installation**
+
 1. **Exécuter** le fichier téléchargé en tant qu'administrateur
 2. **Accepter** les conditions d'utilisation
 3. **Choisir** "Install for all users" (recommandé)
@@ -34,6 +38,7 @@ Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour
 6. **Terminer** l'installation (15-20 minutes)
 
 #### **1.3 Vérification**
+
 ```bash
 # Ouvrir "Anaconda Prompt" depuis le menu Démarrer
 conda --version
@@ -44,11 +49,13 @@ python --version
 ### **Étape 2 : Création de l'Environnement CLIMADA**
 
 #### **2.1 Ouverture d'Anaconda Prompt**
+
 ```bash
 # Clic droit sur "Anaconda Prompt" → "Exécuter en tant qu'administrateur"
 ```
 
 #### **2.2 Création de l'environnement**
+
 ```bash
 # Création environnement Python 3.9 (version stable pour CLIMADA)
 conda create -n climada python=3.9 -y
@@ -64,6 +71,7 @@ python --version
 ### **Étape 3 : Installation des Dépendances Géospatiales**
 
 #### **3.1 Installation via conda-forge**
+
 ```bash
 # Mise à jour conda
 conda update conda -y
@@ -88,6 +96,7 @@ conda install -c conda-forge statsmodels -y
 ```
 
 #### **3.2 Vérification des installations géospatiales**
+
 ```bash
 python -c "import geopandas; print('GeoPandas OK')"
 python -c "import rasterio; print('Rasterio OK')"
@@ -97,6 +106,7 @@ python -c "import cartopy; print('Cartopy OK')"
 ### **Étape 4 : Installation de CLIMADA**
 
 #### **4.1 Installation du package principal**
+
 ```bash
 # Installation CLIMADA core
 pip install climada-petals
@@ -113,6 +123,7 @@ conda install -c conda-forge jupyterlab -y
 ```
 
 #### **4.2 Test de l'installation CLIMADA**
+
 ```bash
 python -c "import climada; print(f'CLIMADA version: {climada.__version__}')"
 python -c "from climada.hazard import Hazard; print('Import Hazard OK')"
@@ -123,6 +134,7 @@ python -c "from climada.engine import Impact; print('Import Impact OK')"
 ### **Étape 5 : Configuration de l'Environnement de Travail**
 
 #### **5.1 Création de la structure de dossiers**
+
 ```bash
 # Création du dossier de travail
 mkdir C:\CLIMADA_Formation_CI
@@ -137,6 +149,7 @@ mkdir config
 ```
 
 #### **5.2 Configuration Jupyter**
+
 ```bash
 # Installation du kernel Jupyter pour l'environnement climada
 python -m ipykernel install --user --name climada --display-name "CLIMADA Formation"
@@ -149,6 +162,7 @@ jupyter lab
 ### **Étape 6 : Test Complet**
 
 #### **6.1 Création d'un notebook de test**
+
 ```python
 # Dans JupyterLab, créer un nouveau notebook avec kernel "CLIMADA Formation"
 # Copier-coller ce code de test :
@@ -180,6 +194,7 @@ print("🎉 Installation CLIMADA complète et fonctionnelle!")
 ## 🐧 **INSTALLATION SUR LINUX (Ubuntu/Debian)**
 
 ### **Prérequis Système**
+
 - **OS** : Ubuntu 18.04+ ou Debian 10+
 - **RAM** : 8 GB minimum, 16 GB recommandé
 - **Espace disque** : 15 GB libres
@@ -199,6 +214,7 @@ sudo apt install curl wget git -y
 ### **Étape 2 : Installation de Python 3.9**
 
 #### **2.1 Installation Python**
+
 ```bash
 # Installation Python 3.9 et outils associés
 sudo apt install python3.9 python3.9-dev python3.9-venv -y
@@ -210,6 +226,7 @@ pip3 --version
 ```
 
 #### **2.2 Installation des dépendances système pour packages géospatiaux**
+
 ```bash
 # Bibliothèques GDAL/OGR pour géospatial
 sudo apt install gdal-bin libgdal-dev -y
@@ -228,6 +245,7 @@ sudo apt install libblas-dev liblapack-dev -y
 ### **Étape 3 : Création de l'Environnement Virtuel**
 
 #### **3.1 Création et activation**
+
 ```bash
 # Création de l'environnement virtuel
 python3.9 -m venv ~/climada_env
@@ -240,6 +258,7 @@ pip install --upgrade pip setuptools wheel
 ```
 
 #### **3.2 Ajout au .bashrc pour activation automatique**
+
 ```bash
 # Ajout d'un alias pour faciliter l'activation
 echo "alias climada='source ~/climada_env/bin/activate'" >> ~/.bashrc
@@ -249,6 +268,7 @@ source ~/.bashrc
 ### **Étape 4 : Installation des Packages Python**
 
 #### **4.1 Installation des dépendances géospatiales**
+
 ```bash
 # Variables d'environnement pour GDAL
 export CPLUS_INCLUDE_PATH=/usr/include/gdal
@@ -267,6 +287,7 @@ pip install scipy scikit-learn statsmodels
 ```
 
 #### **4.2 Installation CLIMADA**
+
 ```bash
 # Installation CLIMADA
 pip install climada-petals
@@ -281,6 +302,7 @@ pip install jupyter jupyterlab ipykernel
 ### **Étape 5 : Configuration Jupyter**
 
 #### **5.1 Installation du kernel**
+
 ```bash
 # Installation du kernel Jupyter
 python -m ipykernel install --user --name climada --display-name "CLIMADA Formation"
@@ -290,6 +312,7 @@ jupyter lab --generate-config
 ```
 
 #### **5.2 Configuration pour accès distant (optionnel)**
+
 ```bash
 # Si accès depuis une autre machine
 jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
@@ -298,6 +321,7 @@ jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 ### **Étape 6 : Structure de Travail**
 
 #### **6.1 Création des dossiers**
+
 ```bash
 # Dossier principal
 mkdir -p ~/CLIMADA_Formation_CI/{data,notebooks,results,docs,config}
@@ -308,6 +332,7 @@ chmod -R 755 ~/CLIMADA_Formation_CI
 ```
 
 #### **6.2 Script de lancement**
+
 ```bash
 # Création d'un script de lancement
 cat > ~/start_climada.sh << 'EOF'
@@ -327,6 +352,7 @@ chmod +x ~/start_climada.sh
 ### **Variables d'Environnement**
 
 #### **Windows**
+
 ```bash
 # Dans Anaconda Prompt
 set CLIMADA_DATA_DIR=C:\CLIMADA_Formation_CI\data
@@ -334,6 +360,7 @@ set CLIMADA_RESULTS_DIR=C:\CLIMADA_Formation_CI\results
 ```
 
 #### **Linux**
+
 ```bash
 # Ajout au .bashrc
 echo 'export CLIMADA_DATA_DIR=~/CLIMADA_Formation_CI/data' >> ~/.bashrc
@@ -344,6 +371,7 @@ source ~/.bashrc
 ### **Configuration CLIMADA**
 
 #### **Fichier de configuration**
+
 ```python
 # Créer config/climada_config.py
 import os
@@ -375,6 +403,7 @@ NATIONAL_RESOLUTION_KM = 5.0 # 5km pour analyses nationales
 ### **Erreurs d'Installation**
 
 #### **Problème : "Microsoft Visual C++ 14.0 is required" (Windows)**
+
 ```bash
 # Solution : Installer Visual Studio Build Tools
 # Télécharger depuis : https://visualstudio.microsoft.com/visual-cpp-build-tools/
@@ -382,6 +411,7 @@ NATIONAL_RESOLUTION_KM = 5.0 # 5km pour analyses nationales
 ```
 
 #### **Problème : "GDAL not found" (Linux)**
+
 ```bash
 # Solution : Réinstaller GDAL avec headers
 sudo apt remove libgdal-dev
@@ -391,6 +421,7 @@ pip install GDAL==$(gdal-config --version)
 ```
 
 #### **Problème : "Cartopy installation failed"**
+
 ```bash
 # Windows
 conda install -c conda-forge cartopy
@@ -403,6 +434,7 @@ pip install cartopy
 ### **Erreurs d'Exécution**
 
 #### **Problème : "No module named 'climada'"**
+
 ```bash
 # Vérifier l'environnement actif
 conda info --envs  # Windows
@@ -414,6 +446,7 @@ source ~/climada_env/bin/activate  # Linux
 ```
 
 #### **Problème : "Kernel not found in Jupyter"**
+
 ```bash
 # Réinstaller le kernel
 python -m ipykernel install --user --name climada --display-name "CLIMADA Formation"
@@ -463,11 +496,13 @@ print("🎉 Installation complète et validée!")
 ## 📞 **SUPPORT TECHNIQUE**
 
 ### **Contacts Formation**
+
 - **Email** : support-climada@dge.gouv.ci
 - **Téléphone** : [Numéro dédié]
 - **Forum** : GitHub Discussions CLIMADA-CI
 
 ### **Ressources Complémentaires**
+
 - **Documentation officielle** : https://climada.readthedocs.io/
 - **Tutoriels** : https://github.com/CLIMADA-project/climada_python
 - **Exemples** : Notebooks fournis avec la formation

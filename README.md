@@ -22,4 +22,5 @@ Vous trouverez ici :
 3.  Lancez Jupyter Lab et ouvrez les notebooks de TP pour commencer.
 
 ---
-*Ce matériel a été préparé pour la session de formation CLIMADA.*
+
+_Ce matériel a été préparé pour la session de formation CLIMADA._

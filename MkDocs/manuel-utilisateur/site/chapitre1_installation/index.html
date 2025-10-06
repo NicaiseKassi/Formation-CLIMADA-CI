@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://formation-climada-dge.netlify.app/chapitre1_installation/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Chapitre 1 - Installation - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chapitre 1 - Installation";
+        var mkdocs_page_input_path = "chapitre1_installation.md";
+        var mkdocs_page_url = "/chapitre1_installation/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Chapitre 1 - Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#objectif">🎯 Objectif</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-sur-window">🖥️ Installation sur window</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequis-systeme">Prérequis Système</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-0-installation-de-git-controle-de-version">Étape 0 : Installation de Git (Contrôle de Version)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#01-telechargement">0.1 Téléchargement</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#02-installation">0.2 Installation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#03-verification-de-linstallation">0.3 Vérification de l'installation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#04-configuration-initiale-de-git">0.4 Configuration initiale de Git</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-1-installation-danaconda">Étape 1 : Installation d'Anaconda</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#11-telechargement">1.1 Téléchargement</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#12-installation">1.2 Installation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#13-verification">1.3 Vérification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-2-creation-de-lenvironnement-climada">Étape 2 : Création de l'Environnement CLIMADA</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#21-ouverture-danaconda-prompt">2.1 Ouverture d'Anaconda Prompt</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#22-creation-de-lenvironnement">2.2 Création de l'environnement</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-3-installation-des-dependances-geospatiales">Étape 3 : Installation des Dépendances Géospatiales</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#31-installation-via-conda-forge">3.1 Installation via conda-forge</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32-verification-des-installations-geospatiales">3.2 Vérification des installations géospatiales</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-4-installation-de-climada">Étape 4 : Installation de CLIMADA</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#41-installation-du-package-principal">4.1 Installation du package principal</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#42-test-de-linstallation-climada">4.2 Test de l'installation CLIMADA</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-5-configuration-de-lenvironnement-de-travail">Étape 5 : Configuration de l'Environnement de Travail</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#51-creation-de-la-structure-de-dossiers">5.1 Création de la structure de dossiers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#52-configuration-jupyter">5.2 Configuration Jupyter</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-6-test-complet">Étape 6 : Test Complet</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#61-creation-dun-notebook-de-test">6.1 Création d'un notebook de test</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-sur-linux-ubuntudebian">🐧 Installation sur linux (Ubuntu/Debian)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequis-systeme_1">Prérequis Système</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-0-installation-de-git-controle-de-version_1">Étape 0 : Installation de Git (Contrôle de Version)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#01-verification-de-git">0.1 Vérification de Git</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#02-installation-de-git">0.2 Installation de Git</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#03-configuration-initiale-de-git">0.3 Configuration initiale de Git</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-1-mise-a-jour-du-systeme">Étape 1 : Mise à Jour du Système</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-2-installation-de-python-39">Étape 2 : Installation de Python 3.9</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#21-installation-python">2.1 Installation Python</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#22-installation-des-dependances-systeme-pour-packages-geospatiaux">2.2 Installation des dépendances système pour packages géospatiaux</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-3-creation-de-lenvironnement-virtuel">Étape 3 : Création de l'Environnement Virtuel</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#31-creation-et-activation">3.1 Création et activation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32-ajout-au-bashrc-pour-activation-automatique">3.2 Ajout au .bashrc pour activation automatique</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-4-installation-des-packages-python">Étape 4 : Installation des Packages Python</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#41-installation-des-dependances-geospatiales">4.1 Installation des dépendances géospatiales</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#42-installation-climada">4.2 Installation CLIMADA</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-5-configuration-jupyter">Étape 5 : Configuration Jupyter</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#51-installation-du-kernel">5.1 Installation du kernel</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#52-configuration-pour-acces-distant-optionnel">5.2 Configuration pour accès distant (optionnel)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#etape-6-structure-de-travail">Étape 6 : Structure de Travail</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#61-creation-des-dossiers">6.1 Création des dossiers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#62-script-de-lancement">6.2 Script de lancement</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-avancee">🔧 Configuration avancée</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variables-denvironnement">Variables d'Environnement</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#windows">Windows</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#linux_1">Linux</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-climada">Configuration CLIMADA</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#fichier-de-configuration">Fichier de configuration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre2_donnees/">Chapitre 2 - Les Données d'Entrée</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre3_tp/">Chapitre 3 - Travaux Pratiques</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre4_decision/">Chapitre 4 - Aide à la Décision</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Chapitre 1 - Installation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Breadcrumb Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Accueil"><span class="icon icon-circle-arrow-left" aria-hidden="true"></span> Previous</a>
+        <a href="../chapitre2_donnees/" class="btn btn-neutral float-right" title="Chapitre 2 - Les Données d'Entrée">Next <span class="icon icon-circle-arrow-right" aria-hidden="true"></span></a>
+    </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chapitre-1-installation-complete-de-lenvironnement-de-travail"><strong>Chapitre 1 : Installation Complète de l'Environnement de Travail</strong></h1>
+<h2 id="objectif">🎯 <strong>Objectif</strong></h2>
+<p>Ce guide détaille l'installation complète de CLIMADA sur Windows et Linux pour la formation DGE.</p>
+<hr />
+<h2 id="installation-sur-window">🖥️ <strong>Installation sur window</strong></h2>
+<h3 id="prerequis-systeme"><strong>Prérequis Système</strong></h3>
+<ul>
+<li><strong>OS</strong> : Windows 10 (64-bit) ou Windows 11</li>
+<li><strong>RAM</strong> : 8 GB minimum, 16 GB recommandé</li>
+<li><strong>Espace disque</strong> : 20 GB libres</li>
+<li><strong>Processeur</strong> : Intel i5 ou équivalent AMD</li>
+<li><strong>Connexion internet</strong> : Stable pour téléchargements</li>
+</ul>
+<h3 id="etape-0-installation-de-git-controle-de-version"><strong>Étape 0 : Installation de Git (Contrôle de Version)</strong></h3>
+<h4 id="01-telechargement"><strong>0.1 Téléchargement</strong></h4>
+<pre><code class="language-bash"># Aller sur https://git-scm.com/download/win
+# Télécharger &quot;Git for Windows&quot; (dernière version stable)
+# Fichier : Git-2.XX.X-64-bit.exe (~50 MB)
+</code></pre>
+<h4 id="02-installation"><strong>0.2 Installation</strong></h4>
+<ol>
+<li><strong>Lancer l'installateur</strong> téléchargé</li>
+<li><strong>Accepter la licence</strong> GNU General Public License</li>
+<li><strong>Choisir le répertoire d'installation</strong> (par défaut : <code>C:\Program Files\Git</code>)</li>
+<li><strong>Sélectionner les composants</strong> :</li>
+<li>✅ Windows Explorer integration (recommandé)</li>
+<li>✅ Git Bash Here</li>
+<li>✅ Git GUI Here</li>
+<li>✅ Associate .git* configuration files with the default text editor</li>
+<li><strong>Configurer l'éditeur par défaut</strong> : Vim ou Nano (ou votre éditeur préféré)</li>
+<li><strong>Ajuster le PATH</strong> : Choisir "Git from the command line and also from 3rd-party software"</li>
+<li><strong>Choisir HTTPS transport backend</strong> : Use the OpenSSL library</li>
+<li><strong>Configurer les fins de lignes</strong> : Checkout Windows-style, commit Unix-style</li>
+<li><strong>Configurer l'émulateur de terminal</strong> : Use MinTTY (recommended)</li>
+<li><strong>Options supplémentaires</strong> :<ul>
+<li>✅ Enable file system caching</li>
+<li>✅ Enable Git Credential Manager</li>
+</ul>
+</li>
+<li><strong>Cliquer sur "Install"</strong></li>
+</ol>
+<h4 id="03-verification-de-linstallation"><strong>0.3 Vérification de l'installation</strong></h4>
+<p>Ouvrir <strong>Anaconda Prompt</strong> (ou cmd) et taper :</p>
+<pre><code class="language-bash">git --version
+# Résultat attendu : git version 2.XX.X.windows.X
+</code></pre>
+<h4 id="04-configuration-initiale-de-git"><strong>0.4 Configuration initiale de Git</strong></h4>
+<pre><code class="language-bash"># Configurer votre identité
+git config --global user.name &quot;Votre Nom&quot;
+git config --global user.email &quot;votre.email@exemple.ci&quot;
+
+# Vérifier la configuration
+git config --list
+</code></pre>
+<hr />
+<h3 id="etape-1-installation-danaconda"><strong>Étape 1 : Installation d'Anaconda</strong></h3>
+<h4 id="11-telechargement"><strong>1.1 Téléchargement</strong></h4>
+<pre><code class="language-bash"># Aller sur https://www.anaconda.com/products/distribution
+# Télécharger &quot;Anaconda Individual Edition&quot; pour Windows
+# Fichier : Anaconda3-2023.XX-Windows-x86_64.exe (~500 MB)
+</code></pre>
+<h4 id="12-installation"><strong>1.2 Installation</strong></h4>
+<ol>
+<li><strong>Exécuter</strong> le fichier téléchargé en tant qu'administrateur</li>
+<li><strong>Accepter</strong> les conditions d'utilisation</li>
+<li><strong>Choisir</strong> "Install for all users" (recommandé)</li>
+<li><strong>Dossier d'installation</strong> : Garder par défaut <code>C:\ProgramData\Anaconda3</code></li>
+<li><strong>Options avancées</strong> :</li>
+<li>✅ Cocher "Add Anaconda to PATH environment variable"</li>
+<li>✅ Cocher "Register Anaconda as default Python"</li>
+<li><strong>Terminer</strong> l'installation (15-20 minutes)</li>
+</ol>
+<h4 id="13-verification"><strong>1.3 Vérification</strong></h4>
+<pre><code class="language-bash"># Ouvrir &quot;Anaconda Prompt&quot; depuis le menu Démarrer
+conda --version
+python --version
+# Doit afficher : conda 23.X.X et Python 3.X.X
+</code></pre>
+<h3 id="etape-2-creation-de-lenvironnement-climada"><strong>Étape 2 : Création de l'Environnement CLIMADA</strong></h3>
+<h4 id="21-ouverture-danaconda-prompt"><strong>2.1 Ouverture d'Anaconda Prompt</strong></h4>
+<pre><code class="language-bash"># Clic droit sur &quot;Anaconda Prompt&quot; → &quot;Exécuter en tant qu'administrateur&quot;
+</code></pre>
+<h4 id="22-creation-de-lenvironnement"><strong>2.2 Création de l'environnement</strong></h4>
+<pre><code class="language-bash"># Création environnement Python 3.9 (version stable pour CLIMADA)
+conda create -n climada python=3.9 -y
+
+# Activation de l'environnement
+conda activate climada
+
+# Vérification
+python --version
+# Doit afficher : Python 3.9.X
+</code></pre>
+<h3 id="etape-3-installation-des-dependances-geospatiales"><strong>Étape 3 : Installation des Dépendances Géospatiales</strong></h3>
+<h4 id="31-installation-via-conda-forge"><strong>3.1 Installation via conda-forge</strong></h4>
+<pre><code class="language-bash"># Mise à jour conda
+conda update conda -y
+
+# Installation des packages géospatiaux (ordre important!)
+conda install -c conda-forge geopandas -y
+conda install -c conda-forge rasterio -y
+conda install -c conda-forge cartopy -y
+conda install -c conda-forge pyproj -y
+conda install -c conda-forge fiona -y
+conda install -c conda-forge shapely -y
+
+# Packages pour données NetCDF
+conda install -c conda-forge netcdf4 -y
+conda install -c conda-forge h5netcdf -y
+conda install -c conda-forge xarray -y
+
+# Packages scientifiques
+conda install -c conda-forge scipy -y
+conda install -c conda-forge scikit-learn -y
+conda install -c conda-forge statsmodels -y
+</code></pre>
+<h4 id="32-verification-des-installations-geospatiales"><strong>3.2 Vérification des installations géospatiales</strong></h4>
+<pre><code class="language-bash">python -c &quot;import geopandas; print('GeoPandas OK')&quot;
+python -c &quot;import rasterio; print('Rasterio OK')&quot;
+python -c &quot;import cartopy; print('Cartopy OK')&quot;
+</code></pre>
+<h3 id="etape-4-installation-de-climada"><strong>Étape 4 : Installation de CLIMADA</strong></h3>
+<h4 id="41-installation-du-package-principal"><strong>4.1 Installation du package principal</strong></h4>
+<pre><code class="language-bash"># Installation CLIMADA core
+pip install climada-petals
+
+# Packages de visualisation
+conda install -c conda-forge matplotlib -y
+conda install -c conda-forge seaborn -y
+conda install -c conda-forge plotly -y
+conda install -c conda-forge folium -y
+
+# Jupyter pour les notebooks
+conda install -c conda-forge jupyter -y
+conda install -c conda-forge jupyterlab -y
+</code></pre>
+<h4 id="42-test-de-linstallation-climada"><strong>4.2 Test de l'installation CLIMADA</strong></h4>
+<pre><code class="language-bash">python -c &quot;import climada; print(f'CLIMADA version: {climada.__version__}')&quot;
+python -c &quot;from climada.hazard import Hazard; print('Import Hazard OK')&quot;
+python -c &quot;from climada.entity import Exposures; print('Import Exposures OK')&quot;
+python -c &quot;from climada.engine import Impact; print('Import Impact OK')&quot;
+</code></pre>
+<h3 id="etape-5-configuration-de-lenvironnement-de-travail"><strong>Étape 5 : Configuration de l'Environnement de Travail</strong></h3>
+<h4 id="51-creation-de-la-structure-de-dossiers"><strong>5.1 Création de la structure de dossiers</strong></h4>
+<pre><code class="language-bash"># Création du dossier de travail
+mkdir C:\CLIMADA_Formation_CI
+cd C:\CLIMADA_Formation_CI
+
+# Structure des sous-dossiers
+mkdir data
+mkdir notebooks
+mkdir results
+mkdir docs
+mkdir config
+</code></pre>
+<h4 id="52-configuration-jupyter"><strong>5.2 Configuration Jupyter</strong></h4>
+<pre><code class="language-bash"># Installation du kernel Jupyter pour l'environnement climada
+python -m ipykernel install --user --name climada --display-name &quot;CLIMADA Formation&quot;
+
+# Lancement de JupyterLab
+jupyter lab
+# Une page web s'ouvre automatiquement sur http://localhost:8888
+</code></pre>
+<h3 id="etape-6-test-complet"><strong>Étape 6 : Test Complet</strong></h3>
+<h4 id="61-creation-dun-notebook-de-test"><strong>6.1 Création d'un notebook de test</strong></h4>
+<pre><code class="language-python"># Dans JupyterLab, créer un nouveau notebook avec kernel &quot;CLIMADA Formation&quot;
+# Copier-coller ce code de test :
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import geopandas as gpd
+from climada.hazard import Hazard
+from climada.entity import Exposures
+from climada.engine import Impact
+
+print(&quot;✅ Toutes les importations réussies!&quot;)
+print(f&quot;CLIMADA version: {climada.__version__}&quot;)
+
+# Test création d'un hazard simple
+hazard = Hazard('TC')  # Tropical Cyclone
+print(&quot;✅ Création Hazard réussie!&quot;)
+
+# Test création exposures
+exposures = Exposures()
+print(&quot;✅ Création Exposures réussie!&quot;)
+
+print(&quot;🎉 Installation CLIMADA complète et fonctionnelle!&quot;)
+</code></pre>
+<hr />
+<h2 id="installation-sur-linux-ubuntudebian">🐧 <strong>Installation sur linux (Ubuntu/Debian)</strong></h2>
+<h3 id="prerequis-systeme_1"><strong>Prérequis Système</strong></h3>
+<ul>
+<li><strong>OS</strong> : Ubuntu 18.04+ ou Debian 10+</li>
+<li><strong>RAM</strong> : 8 GB minimum, 16 GB recommandé</li>
+<li><strong>Espace disque</strong> : 15 GB libres</li>
+<li><strong>Accès sudo</strong> : Requis pour installation packages système</li>
+</ul>
+<h3 id="etape-0-installation-de-git-controle-de-version_1"><strong>Étape 0 : Installation de Git (Contrôle de Version)</strong></h3>
+<h4 id="01-verification-de-git"><strong>0.1 Vérification de Git</strong></h4>
+<pre><code class="language-bash"># Vérifier si Git est déjà installé
+git --version
+
+# Si Git n'est pas installé, le message suivant apparaît :
+# &quot;command 'git' not found&quot;
+</code></pre>
+<h4 id="02-installation-de-git"><strong>0.2 Installation de Git</strong></h4>
+<pre><code class="language-bash"># Installation via apt (Ubuntu/Debian)
+sudo apt update
+sudo apt install git -y
+
+# Vérification de l'installation
+git --version
+# Résultat attendu : git version 2.XX.X
+</code></pre>
+<h4 id="03-configuration-initiale-de-git"><strong>0.3 Configuration initiale de Git</strong></h4>
+<pre><code class="language-bash"># Configurer votre identité
+git config --global user.name &quot;Votre Nom&quot;
+git config --global user.email &quot;votre.email@exemple.ci&quot;
+
+# Configurer l'éditeur par défaut (optionnel)
+git config --global core.editor nano
+
+# Activer la coloration syntaxique
+git config --global color.ui auto
+
+# Vérifier la configuration
+git config --list
+</code></pre>
+<hr />
+<h3 id="etape-1-mise-a-jour-du-systeme"><strong>Étape 1 : Mise à Jour du Système</strong></h3>
+<pre><code class="language-bash"># Mise à jour des packages
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Installation des outils de développement
+sudo apt install build-essential -y
+sudo apt install curl wget -y
+</code></pre>
+<h3 id="etape-2-installation-de-python-39"><strong>Étape 2 : Installation de Python 3.9</strong></h3>
+<h4 id="21-installation-python"><strong>2.1 Installation Python</strong></h4>
+<pre><code class="language-bash"># Installation Python 3.9 et outils associés
+sudo apt install python3.9 python3.9-dev python3.9-venv -y
+sudo apt install python3-pip -y
+
+# Vérification
+python3.9 --version
+pip3 --version
+</code></pre>
+<h4 id="22-installation-des-dependances-systeme-pour-packages-geospatiaux"><strong>2.2 Installation des dépendances système pour packages géospatiaux</strong></h4>
+<pre><code class="language-bash"># Bibliothèques GDAL/OGR pour géospatial
+sudo apt install gdal-bin libgdal-dev -y
+sudo apt install libproj-dev proj-data proj-bin -y
+sudo apt install libgeos-dev -y
+
+# Bibliothèques pour NetCDF/HDF5
+sudo apt install libhdf5-dev libnetcdf-dev -y
+sudo apt install libspatialindex-dev -y
+
+# Bibliothèques pour compilation
+sudo apt install libffi-dev libssl-dev -y
+sudo apt install libblas-dev liblapack-dev -y
+</code></pre>
+<h3 id="etape-3-creation-de-lenvironnement-virtuel"><strong>Étape 3 : Création de l'Environnement Virtuel</strong></h3>
+<h4 id="31-creation-et-activation"><strong>3.1 Création et activation</strong></h4>
+<pre><code class="language-bash"># Création de l'environnement virtuel
+python3.9 -m venv ~/climada_env
+
+# Activation
+source ~/climada_env/bin/activate
+
+# Mise à jour pip
+pip install --upgrade pip setuptools wheel
+</code></pre>
+<h4 id="32-ajout-au-bashrc-pour-activation-automatique"><strong>3.2 Ajout au .bashrc pour activation automatique</strong></h4>
+<pre><code class="language-bash"># Ajout d'un alias pour faciliter l'activation
+echo &quot;alias climada='source ~/climada_env/bin/activate'&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h3 id="etape-4-installation-des-packages-python"><strong>Étape 4 : Installation des Packages Python</strong></h3>
+<h4 id="41-installation-des-dependances-geospatiales"><strong>4.1 Installation des dépendances géospatiales</strong></h4>
+<pre><code class="language-bash"># Variables d'environnement pour GDAL
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+
+# Installation des packages géospatiaux
+pip install numpy pandas
+pip install GDAL==$(gdal-config --version)
+pip install fiona shapely pyproj
+pip install geopandas rasterio
+pip install cartopy
+
+# Packages pour données scientifiques
+pip install netcdf4 h5netcdf xarray
+pip install scipy scikit-learn statsmodels
+</code></pre>
+<h4 id="42-installation-climada"><strong>4.2 Installation CLIMADA</strong></h4>
+<pre><code class="language-bash"># Installation CLIMADA
+pip install climada-petals
+
+# Packages de visualisation
+pip install matplotlib seaborn plotly folium
+
+# Jupyter
+pip install jupyter jupyterlab ipykernel
+</code></pre>
+<h3 id="etape-5-configuration-jupyter"><strong>Étape 5 : Configuration Jupyter</strong></h3>
+<h4 id="51-installation-du-kernel"><strong>5.1 Installation du kernel</strong></h4>
+<pre><code class="language-bash"># Installation du kernel Jupyter
+python -m ipykernel install --user --name climada --display-name &quot;CLIMADA Formation&quot;
+
+# Configuration JupyterLab
+jupyter lab --generate-config
+</code></pre>
+<h4 id="52-configuration-pour-acces-distant-optionnel"><strong>5.2 Configuration pour accès distant (optionnel)</strong></h4>
+<pre><code class="language-bash"># Si accès depuis une autre machine
+jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+</code></pre>
+<h3 id="etape-6-structure-de-travail"><strong>Étape 6 : Structure de Travail</strong></h3>
+<h4 id="61-creation-des-dossiers"><strong>6.1 Création des dossiers</strong></h4>
+<pre><code class="language-bash"># Dossier principal
+mkdir -p ~/CLIMADA_Formation_CI/{data,notebooks,results,docs,config}
+cd ~/CLIMADA_Formation_CI
+
+# Permissions
+chmod -R 755 ~/CLIMADA_Formation_CI
+</code></pre>
+<h4 id="62-script-de-lancement"><strong>6.2 Script de lancement</strong></h4>
+<pre><code class="language-bash"># Création d'un script de lancement
+cat &gt; ~/start_climada.sh &lt;&lt; 'EOF'
+#!/bin/bash
+source ~/climada_env/bin/activate
+cd ~/CLIMADA_Formation_CI
+jupyter lab
+EOF
+
+chmod +x ~/start_climada.sh
+</code></pre>
+<hr />
+<h2 id="configuration-avancee">🔧 <strong>Configuration avancée</strong></h2>
+<h3 id="variables-denvironnement"><strong>Variables d'Environnement</strong></h3>
+<h4 id="windows"><strong>Windows</strong></h4>
+<pre><code class="language-bash"># Dans Anaconda Prompt
+set CLIMADA_DATA_DIR=C:\CLIMADA_Formation_CI\data
+set CLIMADA_RESULTS_DIR=C:\CLIMADA_Formation_CI\results
+</code></pre>
+<h4 id="linux"><strong>Linux</strong></h4>
+<pre><code class="language-bash"># Ajout au .bashrc
+```bash
+# Dans Anaconda Prompt
+set CLIMADA_DATA_DIR=C:\CLIMADA_Formation_CI\data
+set CLIMADA_RESULTS_DIR=C:\CLIMADA_Formation_CI\results
+</code></pre>
+<h4 id="linux_1"><strong>Linux</strong></h4>
+<pre><code class="language-bash"># Ajout au .bashrc
+echo 'export CLIMADA_DATA_DIR=~/CLIMADA_Formation_CI/data' &gt;&gt; ~/.bashrc
+echo 'export CLIMADA_RESULTS_DIR=~/CLIMADA_Formation_CI/results' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h3 id="configuration-climada"><strong>Configuration CLIMADA</strong></h3>
+<h4 id="fichier-de-configuration"><strong>Fichier de configuration</strong></h4>
+<pre><code class="language-python"># Créer config/climada_config.py
+import os
+from pathlib import Path
+
+# Dossiers de travail
+DATA_DIR = Path(os.getenv('CLIMADA_DATA_DIR', './data'))
+RESULTS_DIR = Path(os.getenv('CLIMADA_RESULTS_DIR', './results'))
+
+# Paramètres par défaut Côte d'Ivoire
+DEFAULT_CRS = 'EPSG:4326'  # WGS84
+CI_BOUNDS = {
+    'min_lat': 4.0,
+    'max_lat': 10.8,
+    'min_lon': -8.6,
+    'max_lon': -2.5
+}
+
+# Résolutions recommandées
+URBAN_RESOLUTION_KM = 0.1    # 100m pour zones urbaines
+RURAL_RESOLUTION_KM = 1.0    # 1km pour zones rurales
+NATIONAL_RESOLUTION_KM = 5.0 # 5km pour analyses nationales
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Accueil"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../chapitre2_donnees/" class="btn btn-neutral float-right" title="Chapitre 2 - Les Données d'Entrée">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../chapitre2_donnees/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script src="../assets/js/auth-guard.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
