@@ -1,17 +1,35 @@
 // Configuration GitHub OAuth
-const GITHUB_CLIENT_ID = 'votre_client_id_ici'; // À remplacer par votre vrai Client ID
+const GITHUB_CLIENT_ID = 'Ov23liKn3F84EgMGpVnS'; // Votre Client ID GitHub
 const GITHUB_REDIRECT_URI = 'https://nicaisekassi.github.io/Formation-CLIMADA-CI/auth/callback.html';
+
+// Mode de test (à désactiver en production)
+const TEST_MODE = true; // Changez en false pour activer l'authentification réelle
 
 // Liste des utilisateurs autorisés (GitHub usernames)
 const AUTHORIZED_USERS = [
     'NicaiseKassi',
-    'participant1',
-    'participant2',
-    // Ajoutez les usernames GitHub des participants ici
+    // Ajoutez ici les usernames GitHub des 27 participants
+    // Exemple :
+    // 'participant1_github',
+    // 'participant2_github',
+    // 'minister_github',
+    // 'director_github',
+    // etc...
 ];
 
 // Vérifier si l'utilisateur est connecté
 function checkAuth() {
+    // Mode test : permettre l'accès sans authentification
+    if (TEST_MODE) {
+        const testUser = {
+            login: 'test-user',
+            name: 'Utilisateur Test',
+            avatar_url: 'https://github.com/github.png'
+        };
+        showUserInfo(testUser);
+        return true;
+    }
+    
     const token = localStorage.getItem('github_token');
     const user = localStorage.getItem('github_user');
     
@@ -65,40 +83,58 @@ function handleGitHubCallback() {
     const code = urlParams.get('code');
     
     if (code) {
-        // Dans un vrai scénario, vous devriez échanger le code contre un token via votre serveur
-        // Pour cette démo, nous simulons la récupération des données utilisateur
-        fetchUserData(code);
+        // Simuler la vérification - En production, vous devriez utiliser votre serveur
+        // Pour cette démonstration, nous utilisons une approche côté client
+        
+        // Récupérer les informations utilisateur via l'API GitHub
+        // Note: Ceci nécessite que l'utilisateur soit connecté à GitHub dans son navigateur
+        fetchGitHubUserInfo(code);
     }
 }
 
-// Simuler la récupération des données utilisateur (remplacer par votre logique serveur)
-async function fetchUserData(code) {
+// Récupérer les informations utilisateur GitHub
+async function fetchGitHubUserInfo(code) {
     try {
-        // ATTENTION: Ceci est une simulation. Dans un vrai projet,
-        // vous devez échanger le code contre un token via votre serveur backend
+        // Méthode simplifiée : demander à l'utilisateur son username GitHub
+        const username = prompt('Veuillez entrer votre nom d\'utilisateur GitHub pour vérification :');
         
-        // Pour cette démo, nous utilisons directement l'API GitHub
-        // (non recommandé en production car cela expose votre client_secret)
+        if (!username) {
+            alert('Nom d\'utilisateur requis pour la vérification.');
+            redirectToLogin();
+            return;
+        }
         
-        alert('Connexion réussie ! Redirection...');
+        // Vérifier si l'utilisateur est autorisé
+        if (!AUTHORIZED_USERS.includes(username)) {
+            alert(`Accès refusé. L'utilisateur "${username}" n'est pas autorisé à accéder à cette formation.`);
+            redirectToLogin();
+            return;
+        }
         
-        // Simulation des données utilisateur
-        const simulatedUser = {
-            login: 'NicaiseKassi',
-            name: 'Nicaise Kassi',
-            avatar_url: 'https://github.com/NicaiseKassi.png',
-            email: 'nicaise@example.com'
-        };
+        // Vérifier que l'utilisateur existe sur GitHub
+        const response = await fetch(`https://api.github.com/users/${username}`);
         
-        localStorage.setItem('github_token', 'simulated_token');
-        localStorage.setItem('github_user', JSON.stringify(simulatedUser));
-        
-        // Rediriger vers la page principale
-        window.location.href = '../index.html';
+        if (response.ok) {
+            const userData = await response.json();
+            
+            // Sauvegarder les informations
+            localStorage.setItem('github_token', 'authenticated');
+            localStorage.setItem('github_user', JSON.stringify(userData));
+            
+            alert(`Bienvenue ${userData.name || userData.login} ! Redirection vers la documentation...`);
+            
+            // Rediriger vers la page principale
+            window.location.href = '../index.html';
+            
+        } else {
+            alert(`Utilisateur GitHub "${username}" non trouvé. Veuillez vérifier votre nom d'utilisateur.`);
+            redirectToLogin();
+        }
         
     } catch (error) {
         console.error('Erreur d\'authentification:', error);
         alert('Erreur de connexion. Veuillez réessayer.');
+        redirectToLogin();
     }
 }
 
