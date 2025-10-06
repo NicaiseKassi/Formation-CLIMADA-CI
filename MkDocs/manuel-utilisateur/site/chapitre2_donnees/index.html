@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nicaisekassi.github.io/Formation-CLIMADA-CI/chapitre2_donnees/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Chapitre 2 - Les Données d'Entrée - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chapitre 2 - Les Donn\u00e9es d\u0027Entr\u00e9e";
+        var mkdocs_page_input_path = "chapitre2_donnees.md";
+        var mkdocs_page_url = "/Formation-CLIMADA-CI/chapitre2_donnees/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre1_installation/">Chapitre 1 - Installation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Chapitre 2 - Les Données d'Entrée</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-tableau-recapitulatif-des-sources-de-donnees">2.1 Tableau Récapitulatif des Sources de Données</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-la-hierarchie-des-donnees-du-global-au-local">2.2 La Hiérarchie des Données : du Global au Local</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#niveau-1-optimal-donnees-nationales">📊 Niveau 1 (Optimal) : Données Nationales</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#niveau-2-bon-pour-demarrer-donnees-globales">🌍 Niveau 2 (Bon pour démarrer) : Données Globales</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#23-detail-des-sources-par-type-de-donnees">2.3 Détail des Sources par Type de Données</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#donnees-dalea-climatique">🌧️ Données d'Aléa Climatique</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-internationales">Sources Internationales</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-nationales-prioritaires">Sources Nationales Prioritaires</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#donnees-dexposition-economique">🏘️ Données d'Exposition Économique</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-internationales_1">Sources Internationales</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-nationales-prioritaires_1">Sources Nationales Prioritaires</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#donnees-de-vulnerabilite">📉 Données de Vulnérabilité</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-internationales_2">Sources Internationales</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sources-nationales-prioritaires-indispensables">Sources Nationales Prioritaires (INDISPENSABLES)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#24-preparation-des-donnees-pre-processing">2.4 Préparation des Données (Pre-processing)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nettoyage-des-donnees">🧹 Nettoyage des Données</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#homogeneisation-spatiale">🗺️ Homogénéisation Spatiale</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conversion-de-format">💾 Conversion de Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#documentation-des-donnees">📝 Documentation des Données</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#25-recommandations-pratiques">2.5 Recommandations Pratiques</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#demarche-recommandee">✅ Démarche Recommandée</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pieges-a-eviter">⚠️ Pièges à Éviter</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre3_tp/">Chapitre 3 - Travaux Pratiques</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre4_decision/">Chapitre 4 - Aide à la Décision</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Chapitre 2 - Les Données d'Entrée</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Breadcrumb Navigation">
+        <a href="../chapitre1_installation/" class="btn btn-neutral float-left" title="Chapitre 1 - Installation"><span class="icon icon-circle-arrow-left" aria-hidden="true"></span> Previous</a>
+        <a href="../chapitre3_tp/" class="btn btn-neutral float-right" title="Chapitre 3 - Travaux Pratiques">Next <span class="icon icon-circle-arrow-right" aria-hidden="true"></span></a>
+    </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chapitre-2-les-donnees-dentree-le-cur-de-lanalyse"><strong>Chapitre 2 : Les Données d'Entrée - Le Cœur de l'Analyse</strong></h1>
+<p>La qualité de votre analyse dépend directement de la qualité de vos données. La stratégie recommandée est de <strong>commencer avec des données mondiales pour construire rapidement un premier modèle, puis de l'affiner itérativement avec des données nationales plus précises.</strong></p>
+<hr />
+<h2 id="21-tableau-recapitulatif-des-sources-de-donnees"><strong>2.1 Tableau Récapitulatif des Sources de Données</strong></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Type de Donnée</strong></th>
+<th><strong>Sources Internationales (Bon pour commencer)</strong></th>
+<th><strong>Sources Nationales (Essentiel pour la précision)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aléa (Pluie, Temp., etc.)</strong></td>
+<td>Données satellitaires (CHIRPS, NASA GPM), Topographie (SRTM), Modèles globaux (Aqueduct Flood Tool, ERA5).</td>
+<td><strong>SODEXAM</strong> (stations météo), <strong>Direction des Ressources en Eau</strong>, <strong>ANADER</strong>, <strong>Centre de Recherches Océanologiques (CRO)</strong>.</td>
+</tr>
+<tr>
+<td><strong>Exposition (Actifs, Pop.)</strong></td>
+<td>OpenStreetMap (OSM), WorldPop, Global Human Settlement Layer (GHSL).</td>
+<td><strong>Institut National de la Statistique (INS)</strong> (RGPH), <strong>BNETD</strong>, <strong>Cadastre</strong>, <strong>Ministère de l'Agriculture</strong>, <strong>Ministère de l'Équipement</strong>.</td>
+</tr>
+<tr>
+<td><strong>Vulnérabilité (%)</strong></td>
+<td>Bibliothèque de fonctions de dommage de CLIMADA, Littérature scientifique internationale.</td>
+<td><strong>Expertise locale indispensable :</strong> <strong>CNRA</strong> (agronomie), <strong>CRO</strong> (géomorphologie), ingénieurs civils, assureurs, rapports post-catastrophe de l'<strong>ONPC</strong>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="22-la-hierarchie-des-donnees-du-global-au-local"><strong>2.2 La Hiérarchie des Données : du Global au Local</strong></h2>
+<p>La bonne pratique consiste à toujours privilégier les données locales, qui sont plus précises. Cependant, les données globales sont très utiles pour obtenir rapidement une première estimation ou lorsque les données locales ne sont pas disponibles.</p>
+<h3 id="niveau-1-optimal-donnees-nationales"><strong>📊 Niveau 1 (Optimal) : Données Nationales</strong></h3>
+<ul>
+<li><strong>Sources :</strong> INS, SODEXAM, BNETD, CNRA, CRO, Ministères sectoriels</li>
+<li><strong>Avantages :</strong></li>
+<li>Haute précision spatiale et temporelle</li>
+<li>Calibrées pour le contexte ivoirien</li>
+<li>Crédibilité institutionnelle forte</li>
+<li>Validation terrain disponible</li>
+<li><strong>Défis :</strong></li>
+<li>Disponibilité parfois limitée</li>
+<li>Formats hétérogènes</li>
+<li>Procédures d'accès à clarifier</li>
+<li>Nécessité de conventions de partenariat</li>
+</ul>
+<h3 id="niveau-2-bon-pour-demarrer-donnees-globales"><strong>🌍 Niveau 2 (Bon pour démarrer) : Données Globales</strong></h3>
+<ul>
+<li><strong>Sources :</strong> OpenStreetMap, WorldPop, CHIRPS, ERA5, bases de données de la Banque Mondiale</li>
+<li><strong>Avantages :</strong></li>
+<li>Facilement accessibles (téléchargement libre)</li>
+<li>Couverture mondiale complète</li>
+<li>Format standardisé (GeoTIFF, NetCDF)</li>
+<li>Documentation exhaustive</li>
+<li><strong>Défis :</strong></li>
+<li>Moins précises localement</li>
+<li>Peuvent ne pas capturer les spécificités du terrain</li>
+<li>Résolution spatiale parfois insuffisante</li>
+<li>Décalage temporel possible</li>
+</ul>
+<hr />
+<h2 id="23-detail-des-sources-par-type-de-donnees"><strong>2.3 Détail des Sources par Type de Données</strong></h2>
+<h3 id="donnees-dalea-climatique"><strong>🌧️ Données d'Aléa Climatique</strong></h3>
+<h4 id="sources-internationales"><strong>Sources Internationales</strong></h4>
+<ul>
+<li>
+<p><strong>CHIRPS</strong> (Climate Hazards Group InfraRed Precipitation with Station data)</p>
+</li>
+<li>
+<p>Résolution : 5 km</p>
+</li>
+<li>Période : 1981 - présent</li>
+<li>
+<p>Accès : <a href="https://www.chc.ucsb.edu/data/chirps">https://www.chc.ucsb.edu/data/chirps</a></p>
+</li>
+<li>
+<p><strong>NASA GPM</strong> (Global Precipitation Measurement)</p>
+</li>
+<li>
+<p>Résolution : 10 km</p>
+</li>
+<li>Fréquence : Toutes les 30 minutes</li>
+<li>
+<p>Accès : <a href="https://gpm.nasa.gov/">https://gpm.nasa.gov/</a></p>
+</li>
+<li>
+<p><strong>ERA5</strong> (ECMWF Reanalysis v5)</p>
+</li>
+<li>
+<p>Variables : Température, précipitation, vent, humidité</p>
+</li>
+<li>Résolution : 30 km</li>
+<li>
+<p>Accès : <a href="https://cds.climate.copernicus.eu/">https://cds.climate.copernicus.eu/</a></p>
+</li>
+<li>
+<p><strong>SRTM</strong> (Shuttle Radar Topography Mission)</p>
+</li>
+<li>Modèle numérique de terrain</li>
+<li>Résolution : 30 m ou 90 m</li>
+<li>Essentiel pour modélisation inondations</li>
+</ul>
+<h4 id="sources-nationales-prioritaires"><strong>Sources Nationales Prioritaires</strong></h4>
+<ul>
+<li>
+<p><strong>SODEXAM</strong> : Données de 20+ stations météo en Côte d'Ivoire</p>
+</li>
+<li>
+<p>Données historiques depuis 1960</p>
+</li>
+<li>Paramètres : Pluie, température, vent, humidité</li>
+<li>
+<p>Contact : <span style="color:blue;">info@sodexam.ci</span></p>
+</li>
+<li>
+<p><strong>Direction des Ressources en Eau (DRE)</strong> :</p>
+</li>
+<li>
+<p>Données hydrologiques (débits des rivières)</p>
+</li>
+<li>
+<p>Cartes d'inondation historiques</p>
+</li>
+<li>
+<p><strong>ANADER</strong> :</p>
+</li>
+<li>Données agro-climatiques</li>
+<li>Suivi des campagnes agricoles</li>
+</ul>
+<h3 id="donnees-dexposition-economique"><strong>🏘️ Données d'Exposition Économique</strong></h3>
+<h4 id="sources-internationales_1"><strong>Sources Internationales</strong></h4>
+<ul>
+<li>
+<p><strong>OpenStreetMap (OSM)</strong></p>
+</li>
+<li>
+<p>Bâtiments, routes, infrastructures</p>
+</li>
+<li>Données contributives, gratuit</li>
+<li>Qualité variable selon les zones</li>
+<li>
+<p>Accès : <a href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a></p>
+</li>
+<li>
+<p><strong>WorldPop</strong></p>
+</li>
+<li>
+<p>Densité de population</p>
+</li>
+<li>Résolution : 100 m</li>
+<li>
+<p>Accès : <a href="https://www.worldpop.org/">https://www.worldpop.org/</a></p>
+</li>
+<li>
+<p><strong>Global Human Settlement Layer (GHSL)</strong></p>
+</li>
+<li>Empreinte urbaine</li>
+<li>Données de bâti</li>
+<li>Accès : <a href="https://ghsl.jrc.ec.europa.eu/">https://ghsl.jrc.ec.europa.eu/</a></li>
+</ul>
+<h4 id="sources-nationales-prioritaires_1"><strong>Sources Nationales Prioritaires</strong></h4>
+<ul>
+<li>
+<p><strong>Institut National de la Statistique (INS)</strong></p>
+</li>
+<li>
+<p>RGPH (Recensement Général de la Population et de l'Habitat)</p>
+</li>
+<li>Données démographiques par localité</li>
+<li>Données économiques sectorielles</li>
+<li>
+<p>PIB régional, revenus, emploi</p>
+</li>
+<li>
+<p><strong>BNETD</strong> (Bureau National d'Études Techniques et de Développement)</p>
+</li>
+<li>
+<p>Études d'impact économique</p>
+</li>
+<li>Cartes d'infrastructures</li>
+<li>
+<p>Évaluations de projets</p>
+</li>
+<li>
+<p><strong>Cadastre / Direction Générale des Impôts</strong></p>
+</li>
+<li>
+<p>Valeur foncière et immobilière</p>
+</li>
+<li>
+<p>Propriétés bâties et non bâties</p>
+</li>
+<li>
+<p><strong>Ministère de l'Agriculture</strong></p>
+</li>
+<li>Superficies cultivées par culture</li>
+<li>Productions agricoles régionales</li>
+<li>Valeur de la production</li>
+</ul>
+<h3 id="donnees-de-vulnerabilite"><strong>📉 Données de Vulnérabilité</strong></h3>
+<h4 id="sources-internationales_2"><strong>Sources Internationales</strong></h4>
+<ul>
+<li>
+<p><strong>Bibliothèque CLIMADA</strong></p>
+</li>
+<li>
+<p>Fonctions de dommage pré-calibrées</p>
+</li>
+<li>Courbes pour différents types d'actifs</li>
+<li>
+<p>Basées sur littérature scientifique</p>
+</li>
+<li>
+<p><strong>Littérature Scientifique</strong></p>
+</li>
+<li>Articles peer-reviewed</li>
+<li>Rapports techniques internationaux (Banque Mondiale, UN-ISDR)</li>
+</ul>
+<h4 id="sources-nationales-prioritaires-indispensables"><strong>Sources Nationales Prioritaires (INDISPENSABLES)</strong></h4>
+<ul>
+<li>
+<p><strong>CNRA</strong> (Centre National de Recherche Agronomique)</p>
+</li>
+<li>
+<p>Courbes de rendement vs stress hydrique</p>
+</li>
+<li>
+<p>Vulnérabilité variétale</p>
+</li>
+<li>
+<p><strong>CRO</strong> (Centre de Recherches Océanologiques)</p>
+</li>
+<li>
+<p>Dynamique côtière</p>
+</li>
+<li>
+<p>Taux d'érosion mesurés</p>
+</li>
+<li>
+<p><strong>Ingénieurs Civils / Bureau d'Études</strong></p>
+</li>
+<li>
+<p>Résistance du bâti aux inondations</p>
+</li>
+<li>
+<p>Standards de construction</p>
+</li>
+<li>
+<p><strong>Compagnies d'Assurance</strong></p>
+</li>
+<li>
+<p>Sinistres historiques</p>
+</li>
+<li>
+<p>Ratios dommage/valeur assurée</p>
+</li>
+<li>
+<p><strong>ONPC</strong> (Office National de la Protection Civile)</p>
+</li>
+<li>Rapports post-catastrophe</li>
+<li>Évaluations des dommages</li>
+<li>Retours d'expérience</li>
+</ul>
+<hr />
+<h2 id="24-preparation-des-donnees-pre-processing"><strong>2.4 Préparation des Données (Pre-processing)</strong></h2>
+<p>Les données brutes sont rarement utilisables directement. Une étape de préparation est indispensable.</p>
+<h3 id="nettoyage-des-donnees"><strong>🧹 Nettoyage des Données</strong></h3>
+<ul>
+<li>
+<p><strong>Traiter les valeurs manquantes</strong></p>
+</li>
+<li>
+<p>Interpolation spatiale ou temporelle</p>
+</li>
+<li>Imputation par moyenne/médiane</li>
+<li>
+<p>Suppression si trop de données manquantes</p>
+</li>
+<li>
+<p><strong>Corriger les erreurs</strong></p>
+</li>
+<li>Valeurs aberrantes (outliers)</li>
+<li>Erreurs de saisie</li>
+<li>Incohérences spatiales</li>
+</ul>
+<h3 id="homogeneisation-spatiale"><strong>🗺️ Homogénéisation Spatiale</strong></h3>
+<ul>
+<li>
+<p><strong>Système de Coordonnées de Référence (CRS)</strong></p>
+</li>
+<li>
+<p><strong>Recommandé pour CI :</strong> EPSG:4326 (WGS84 - lat/lon)</p>
+</li>
+<li>Reprojection si nécessaire avec QGIS ou Python</li>
+<li>
+<p>Vérifier l'alignement des couches</p>
+</li>
+<li>
+<p><strong>Résolution Spatiale</strong></p>
+</li>
+<li>Ré-échantillonnage (resampling) pour harmoniser</li>
+<li>Méthodes : bilinéaire, nearest neighbor, cubic</li>
+<li>Documenter la résolution finale choisie</li>
+</ul>
+<h3 id="conversion-de-format"><strong>💾 Conversion de Format</strong></h3>
+<ul>
+<li>
+<p><strong>Formats recommandés pour CLIMADA</strong></p>
+</li>
+<li>
+<p><strong>Raster</strong> : GeoTIFF, NetCDF, HDF5</p>
+</li>
+<li><strong>Vecteur</strong> : GeoJSON, Shapefile, GeoPackage</li>
+<li>
+<p><strong>Tableaux</strong> : CSV avec colonnes lat/lon</p>
+</li>
+<li>
+<p><strong>Outils de conversion</strong></p>
+</li>
+<li>GDAL (ligne de commande)</li>
+<li>QGIS (interface graphique)</li>
+<li>Python (geopandas, rasterio)</li>
+</ul>
+<h3 id="documentation-des-donnees"><strong>📝 Documentation des Données</strong></h3>
+<p><strong>ESSENTIEL :</strong> Pour chaque jeu de données, documenter :</p>
+<ul>
+<li>📍 Source et date d'acquisition</li>
+<li>📊 Résolution spatiale et temporelle</li>
+<li>🔧 Traitements appliqués</li>
+<li>⚠️ Limites et incertitudes connues</li>
+<li>👤 Responsable/contact</li>
+</ul>
+<hr />
+<h2 id="25-recommandations-pratiques"><strong>2.5 Recommandations Pratiques</strong></h2>
+<h3 id="demarche-recommandee"><strong>✅ Démarche Recommandée</strong></h3>
+<ol>
+<li>
+<p><strong>Phase Pilote (1 mois)</strong></p>
+</li>
+<li>
+<p>Utiliser données globales</p>
+</li>
+<li>Construire un premier prototype</li>
+<li>
+<p>Identifier les données nationales prioritaires</p>
+</li>
+<li>
+<p><strong>Phase d'Amélioration (2-3 mois)</strong></p>
+</li>
+<li>
+<p>Engager les partenariats institutionnels</p>
+</li>
+<li>Intégrer progressivement les données nationales</li>
+<li>
+<p>Valider avec experts sectoriels</p>
+</li>
+<li>
+<p><strong>Phase de Production (continu)</strong></p>
+</li>
+<li>Automatiser l'acquisition des données</li>
+<li>Mettre en place un système de mise à jour</li>
+<li>Assurer la qualité continue</li>
+</ol>
+<h3 id="pieges-a-eviter"><strong>⚠️ Pièges à Éviter</strong></h3>
+<p>❌ <strong>Ne pas attendre d'avoir toutes les données parfaites</strong> avant de commencer
+→ Commencer avec l'existant et améliorer itérativement</p>
+<p>❌ <strong>Ne pas mélanger des résolutions spatiales très différentes</strong>
+→ Harmoniser avant analyse</p>
+<p>❌ <strong>Ne pas oublier de documenter la provenance des données</strong>
+→ Traçabilité essentielle pour la crédibilité</p>
+<p>❌ <strong>Ne pas négliger la validation avec les experts locaux</strong>
+→ Les données doivent être cohérentes avec la réalité terrain</p>
+<hr />
+<p><em>La qualité des données détermine la qualité des résultats. Investir du temps dans cette phase est crucial pour produire des analyses crédibles et utilisables pour la décision.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../chapitre1_installation/" class="btn btn-neutral float-left" title="Chapitre 1 - Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../chapitre3_tp/" class="btn btn-neutral float-right" title="Chapitre 3 - Travaux Pratiques">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../chapitre1_installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../chapitre3_tp/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../auth/auth.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

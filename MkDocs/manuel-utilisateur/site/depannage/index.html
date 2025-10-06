@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nicaisekassi.github.io/Formation-CLIMADA-CI/depannage/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Dépannage et Bonnes Pratiques - Manuel d'Utilisation CLIMADA-CI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "D\u00e9pannage et Bonnes Pratiques";
+        var mkdocs_page_input_path = "depannage.md";
+        var mkdocs_page_url = "/Formation-CLIMADA-CI/depannage/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/Picture.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Accueil</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre1_installation/">Chapitre 1 - Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre2_donnees/">Chapitre 2 - Les Données d'Entrée</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre3_tp/">Chapitre 3 - Travaux Pratiques</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre4_decision/">Chapitre 4 - Aide à la Décision</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chapitre5_depannage/">Chapitre 5 - Dépannage</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conclusion_finale/">Conclusion</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Allez plus loin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossaire_complet/">Glossaire</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Manuel d'Utilisation CLIMADA-CI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Dépannage et Bonnes Pratiques</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="depannage-et-bonnes-pratiques">Dépannage et Bonnes Pratiques</h1>
+<p>Cette section vous aidera à résoudre les problèmes les plus courants.</p>
+<h2 id="problemes-dinstallation-frequents">Problèmes d'Installation Fréquents</h2>
+<p><strong>Erreur Microsoft Visual C++ (Windows)</strong> : Ce problème survient souvent. La solution est d'installer les "Visual Studio Build Tools" depuis le site de Microsoft.</p>
+<p><strong>Kernel climada_formation non visible dans Jupyter</strong> : Si cela arrive, activez votre environnement (<code>conda activate climada_formation</code>) et réinstallez le kernel avec la commande :</p>
+<pre><code class="language-bash">python -m ipykernel install --user --name climada_formation --display-name &quot;CLIMADA DGE&quot;
+</code></pre>
+<h2 id="bonnes-pratiques-de-modelisation">Bonnes Pratiques de Modélisation</h2>
+<ul>
+<li><strong>Commencez simple</strong> : Ne cherchez pas à tout modéliser d'un coup. Isoler un aléa et une zone géographique pour commencer.</li>
+<li><strong>Documentez tout</strong> : Gardez une trace de vos sources de données, de vos hypothèses et des versions de vos codes. La reproductibilité est la clé.</li>
+<li><strong>Analysez la sensibilité</strong> : Testez comment vos résultats changent si vous modifiez une hypothèse clé (ex: la fonction de vulnérabilité). Cela vous donnera une idée de la robustesse de vos conclusions.</li>
+<li><strong>Collaborez</strong> : Une bonne analyse de risque est toujours pluridisciplinaire. Travaillez en étroite collaboration avec les experts sectoriels (météorologues, agronomes, ingénieurs).</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../auth/auth.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
