@@ -1,8 +1,9 @@
 # Dossier MkDocs complet
 MkDocs/
 
-# Fichiers Markdown
+# Fichiers Markdown (sauf README.md)
 *.md
+!README.md
 
 # Dossiers de build générés
 site/
