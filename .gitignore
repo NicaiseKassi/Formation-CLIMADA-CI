@@ -5,6 +5,14 @@ MkDocs/
 *.md
 !README.md
 
+# Documents Office
+*.docx
+*.xlsx
+*.pptx
+*.doc
+*.xls
+*.ppt
+
 # Dossiers de build générés
 site/
 build/
