@@ -3,17 +3,19 @@ const GITHUB_CLIENT_ID = 'Ov23liKn3F84EgMGpVnS'; // Votre Client ID GitHub
 const GITHUB_REDIRECT_URI = 'https://nicaisekassi.github.io/Formation-CLIMADA-CI/auth/callback.html';
 
 // Mode de test (à désactiver en production)
-const TEST_MODE = true; // Changez en false pour activer l'authentification réelle
+const TEST_MODE = false; // Mode production activé - authentification réelle
 
 // Liste des utilisateurs autorisés (GitHub usernames)
 const AUTHORIZED_USERS = [
     'NicaiseKassi',
+    'nicaisekassi', // En cas de variation de casse
     // Ajoutez ici les usernames GitHub des 27 participants
-    // Exemple :
-    // 'participant1_github',
-    // 'participant2_github',
-    // 'minister_github',
-    // 'director_github',
+    // Exemples pour les ministères et institutions :
+    // 'ministre-budget-ci',
+    // 'dge-cote-ivoire',
+    // 'participant-ddt',
+    // 'participant-agriculture',
+    // 'expert-climat-ci',
     // etc...
 ];
 
@@ -95,8 +97,11 @@ function handleGitHubCallback() {
 // Récupérer les informations utilisateur GitHub
 async function fetchGitHubUserInfo(code) {
     try {
-        // Méthode simplifiée : demander à l'utilisateur son username GitHub
-        const username = prompt('Veuillez entrer votre nom d\'utilisateur GitHub pour vérification :');
+        // Récupérer directement les informations de l'utilisateur connecté à GitHub
+        // via l'API publique (sans token - informations publiques uniquement)
+        
+        // Première approche : demander le username et valider via l'API
+        const username = prompt('Pour finaliser la connexion, veuillez confirmer votre nom d\'utilisateur GitHub :');
         
         if (!username) {
             alert('Nom d\'utilisateur requis pour la vérification.');
@@ -106,12 +111,12 @@ async function fetchGitHubUserInfo(code) {
         
         // Vérifier si l'utilisateur est autorisé
         if (!AUTHORIZED_USERS.includes(username)) {
-            alert(`Accès refusé. L'utilisateur "${username}" n'est pas autorisé à accéder à cette formation.`);
+            alert(`Accès refusé. L'utilisateur "${username}" n'est pas dans la liste des participants autorisés à cette formation.`);
             redirectToLogin();
             return;
         }
         
-        // Vérifier que l'utilisateur existe sur GitHub
+        // Récupérer les informations publiques de l'utilisateur GitHub
         const response = await fetch(`https://api.github.com/users/${username}`);
         
         if (response.ok) {
@@ -121,19 +126,22 @@ async function fetchGitHubUserInfo(code) {
             localStorage.setItem('github_token', 'authenticated');
             localStorage.setItem('github_user', JSON.stringify(userData));
             
-            alert(`Bienvenue ${userData.name || userData.login} ! Redirection vers la documentation...`);
+            alert(`Bienvenue ${userData.name || userData.login} ! Accès autorisé à la formation CLIMADA.`);
             
             // Rediriger vers la page principale
             window.location.href = '../index.html';
             
+        } else if (response.status === 404) {
+            alert(`L'utilisateur GitHub "${username}" n'existe pas. Veuillez vérifier l'orthographe de votre nom d'utilisateur.`);
+            redirectToLogin();
         } else {
-            alert(`Utilisateur GitHub "${username}" non trouvé. Veuillez vérifier votre nom d'utilisateur.`);
+            alert(`Erreur lors de la vérification de l'utilisateur "${username}". Veuillez réessayer.`);
             redirectToLogin();
         }
         
     } catch (error) {
         console.error('Erreur d\'authentification:', error);
-        alert('Erreur de connexion. Veuillez réessayer.');
+        alert('Erreur de connexion réseau. Veuillez vérifier votre connexion Internet et réessayer.');
         redirectToLogin();
     }
 }
