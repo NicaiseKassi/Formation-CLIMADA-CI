@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Documentation CLIMADA pour la formation en Côte d'Ivoire",
   "scripts": {
-    "vercel-build": "pip install -r requirements.txt && mkdocs build",
+    "vercel-build": "python3 -m pip install --upgrade pip && pip install -r requirements.txt && mkdocs build",
     "build": "mkdocs build",
-    "dev": "mkdocs serve",
-    "install": "pip install -r requirements.txt"
+    "dev": "mkdocs serve"
   },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/NicaiseKassi/Formation-CLIMADA-CI.git"
