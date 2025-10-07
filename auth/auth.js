@@ -10,9 +10,9 @@ const TEST_MODE = false; // Mode production activé - authentification réelle
 const AUTHORIZED_USERS = [
   "NicaiseKassi",
   "nicaisekassi", // En cas de variation de casse
+  "Matrice95",
   // Ajoutez ici les usernames GitHub des 27 participants
   // Exemples pour les ministères et institutions :
-  // 'ministere-environnement',
   // 'dge-cote-ivoire',
   // 'participant-ddt',
   // 'participant-agriculture',
