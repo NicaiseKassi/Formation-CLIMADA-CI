@@ -21,7 +21,6 @@ const AUTHORIZED_USERS = [
   "Expert-Test-2025",
   "Dr-Ministere-Environnement",
   "Expert-Agriculture-CI",
-  "Participant-Universite",
 ];
 
 // Vérifier si l'utilisateur est connecté
