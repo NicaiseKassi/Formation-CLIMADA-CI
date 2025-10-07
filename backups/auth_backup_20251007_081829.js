@@ -17,7 +17,6 @@ const AUTHORIZED_USERS = [
   // 'participant-agriculture',
   // 'expert-climat-ci',
   // etc...
-  "Participant-Test-Formation",
 ];
 
 // Vérifier si l'utilisateur est connecté
