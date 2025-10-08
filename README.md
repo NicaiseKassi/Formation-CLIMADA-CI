@@ -39,15 +39,44 @@ Cette formation vous permet de maîtriser **CLIMADA**, un outil puissant d'éval
 - **Notebooks Jupyter** : Exercices pratiques prêts à l'emploi
 - **Documentation interactive** : Manuel utilisateur complet avec exemples
 
-## 🚀 Démarrage Rapide
+## 🚀 Installation pour les Participants
 
-### 1. **Accès au Manuel**
-
-Connectez-vous au manuel interactif : [Formation CLIMADA CI](https://nicaisekassi.github.io/Formation-CLIMADA-CI/auth/login.html)
-
-### 2. **Configuration Locale** (Optionnel)
+### Installation Automatique (Recommandée)
 
 ```bash
+# 1. Cloner le dépôt
+git clone https://github.com/NicaiseKassi/Formation-CLIMADA-CI.git
+cd Formation-CLIMADA-CI
+
+# 2. Lancer l'installation automatique
+bash install_climada.sh
+
+# 3. Activer l'environnement
+conda activate climada_formation
+
+# 4. Tester l'installation
+python test_climada.py
+```
+
+**⏱️ Durée estimée :** 15-30 minutes
+
+### Guides d'Installation Détaillés
+
+- 📘 **Guide Complet** : [INSTALLATION.md](INSTALLATION.md)
+- 🪟 **Guide Windows** : [INSTALLATION_WINDOWS.md](INSTALLATION_WINDOWS.md)
+- ⚡ **Démarrage Rapide** : [QUICK_START.md](QUICK_START.md)
+
+### Installation Manuelle
+
+```bash
+# Créer l'environnement Conda
+conda env create -f environment_formation.yml
+
+# Activer l'environnement
+conda activate climada_formation
+
+# Lancer Jupyter
+jupyter lab
 # Cloner le repository
 git clone https://github.com/NicaiseKassi/Formation-CLIMADA-CI.git
 

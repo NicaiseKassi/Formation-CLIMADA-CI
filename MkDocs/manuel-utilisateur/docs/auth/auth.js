@@ -37,6 +37,7 @@ const AUTHORIZED_USERS = [
   "KOUASSI-KOFFI-JOSE-MARIA",
   "AbolDgeProject",
   "--deploy-only",
+  "feby-hub",
 ];
 
 // Vérifier si l'utilisateur est connecté
