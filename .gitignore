@@ -67,3 +67,10 @@ docs/build/
 *.zip
 *.tar.gz
 *.rar
+
+# Fichiers de verrouillage LibreOffice/Word
+.~lock.*
+~lock.*
+
+# Presentations temporaires
+EGU21-*.pdf
