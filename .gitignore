@@ -1,5 +1,12 @@
 # 🧹 Formation CLIMADA CI - Fichiers à ignorer
 
+# === Scripts d'administration (non publics) ===
+*.sh
+ajouter_utilisateurs.sh
+push_to_main.sh
+deploy_urgence.sh
+reorganiser_projet.sh
+
 # === Builds et fichiers générés ===
 # MkDocs builds temporaires
 MkDocs/manuel-utilisateur/site/
