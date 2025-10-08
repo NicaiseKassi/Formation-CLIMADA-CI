@@ -26,7 +26,6 @@ const AUTHORIZED_USERS = [
   "konan-remi2025",
   "OUATTCAS",
   "berengeredoukou-netizen",
-  "makicha2014",
 ];
 
 // Vérifier si l'utilisateur est connecté
