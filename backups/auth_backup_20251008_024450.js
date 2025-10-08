@@ -31,7 +31,6 @@ const AUTHORIZED_USERS = [
   "Yachouivi",
   "rogermoussan",
   "F-Bright",
-  "oumardiabate63-maker",
 ];
 
 // Vérifier si l'utilisateur est connecté
