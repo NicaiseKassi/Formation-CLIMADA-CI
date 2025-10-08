@@ -62,16 +62,7 @@ jupyter lab
 - Suivez les instructions du manuel en ligne
 - Exécutez les cellules pas à pas
 
-## 🎓 Public Cible
-
-Cette formation s'adresse aux :
-- **Experts en climatologie** et météorologie
-- **Économistes** spécialisés dans l'environnement
-- **Décideurs politiques** en charge de l'adaptation climatique
-- **Chercheurs** en sciences de l'environnement
-- **Professionnels** de la gestion des risques
-
-## 🌟 Fonctionnalités de la Plateforme
+##  Fonctionnalités de la Plateforme
 
 - ✅ **Interface web moderne** avec authentification GitHub
 - ✅ **Documentation interactive** avec exemples de code
