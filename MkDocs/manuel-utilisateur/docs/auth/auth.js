@@ -39,6 +39,7 @@ const AUTHORIZED_USERS = [
   "--deploy-only",
   "feby-hub",
   "gerallou",
+  "elvine2504",
 ];
 
 // Vérifier si l'utilisateur est connecté
