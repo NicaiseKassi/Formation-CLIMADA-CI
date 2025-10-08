@@ -36,6 +36,7 @@ const AUTHORIZED_USERS = [
   "danacyr10",
   "KOUASSI-KOFFI-JOSE-MARIA",
   "AbolDgeProject",
+  "--deploy-only",
 ];
 
 // Vérifier si l'utilisateur est connecté

@@ -131,28 +131,48 @@ add_user() {
 save_to_main() {
     local commit_message="$1"
     
-    print_header "Sauvegarde sur la branche main"
+    print_header "💾 Sauvegarde sur la branche main"
+    
+    cd "$REPO_DIR"
+    
+    # S'assurer qu'on est sur main
+    git checkout main
     
     print_info "Ajout des modifications..."
     git add .
     
     print_info "Création du commit..."
-    git commit -m "$commit_message" || {
-        print_warning "Aucune modification à commiter"
-        return 1
-    }
-    
-    print_info "Push vers origin/main..."
-    git push origin main
-    
-    print_success "Modifications sauvegardées sur main"
-    return 0
+    if git commit -m "$commit_message"; then
+        print_success "Commit réussi sur main"
+        
+        print_info "Push vers origin/main..."
+        if git push origin main; then
+            print_success "Push réussi vers origin/main"
+            return 0
+        else
+            print_error "Échec du push vers origin/main"
+            return 1
+        fi
+    else
+        print_warning "Aucune modification à commiter sur main"
+        return 0
+    fi
 }
 
 # 🚀 Déployer sur gh-pages
 deploy_to_ghpages() {
-    print_header "Déploiement sur gh-pages"
+    print_header "🚀 Déploiement sur gh-pages"
     
+    cd "$REPO_DIR"
+    
+    # S'assurer qu'on est sur main
+    git checkout main
+    
+    # Pull pour être sûr d'avoir la dernière version
+    print_info "Récupération des dernières modifications..."
+    git pull origin main || print_warning "Impossible de pull - continuons"
+    
+    # Aller dans le répertoire MkDocs
     cd "$MKDOCS_DIR"
     
     # Activer l'environnement conda si nécessaire
@@ -162,57 +182,99 @@ deploy_to_ghpages() {
         conda activate climada_formation 2>/dev/null || print_warning "Environnement climada_formation non trouvé, utilisation de l'environnement par défaut"
     fi
     
-    # Construire le site
+    # Construire le site PROPREMENT
+    print_info "Nettoyage du site précédent..."
+    rm -rf site/ || true
+    
     print_info "Construction du site avec mkdocs..."
-    mkdocs build || {
+    if mkdocs build; then
+        print_success "Site construit avec succès"
+    else
         print_error "Échec de la construction mkdocs"
         return 1
-    }
-    print_success "Site construit avec succès"
+    fi
+    
+    # Retourner à la racine du repo
+    cd "$REPO_DIR"
+    
+    # Sauvegarder la branche actuelle
+    current_branch=$(git branch --show-current)
     
     # Passer à gh-pages
     print_info "Passage à la branche gh-pages..."
-    git checkout gh-pages || {
-        print_error "Impossible de passer à la branche gh-pages"
+    if git checkout gh-pages; then
+        print_success "Sur la branche gh-pages"
+    else
+        print_warning "Création de la branche gh-pages..."
+        git checkout -b gh-pages || {
+            print_error "Impossible de créer/accéder à la branche gh-pages"
+            return 1
+        }
+    fi
+    
+    # Nettoyer gh-pages (SAUF .git)
+    print_info "Nettoyage de la branche gh-pages..."
+    find . -mindepth 1 -not -path './.git*' -delete
+    
+    # Copier les fichiers générés depuis main
+    print_info "Copie des fichiers du site..."
+    cp -r "$MKDOCS_DIR/site/"* . || {
+        print_error "Impossible de copier les fichiers du site"
+        git checkout "$current_branch"
         return 1
     }
     
-    # Copier les fichiers générés
-    print_info "Copie des fichiers générés..."
-    cp -r site/* .
+    # Ajouter un fichier .nojekyll pour GitHub Pages
+    touch .nojekyll
     
-    # Commiter et pousser
-    print_info "Ajout des fichiers modifiés..."
+    # Commiter et pousser vers gh-pages
+    print_info "Ajout des fichiers sur gh-pages..."
     git add .
     
-    timestamp=$(date +"%Y-%m-%d %H:%M:%S")
-    print_info "Création du commit de déploiement..."
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    commit_message="🚀 Déploiement automatique du site - $timestamp"
     
-    # Forcer le commit même s'il n'y a pas de changements visibles
-    if git commit -m "🚀 Déploiement authentification - $timestamp" || git commit --allow-empty -m "🚀 Déploiement forcé authentification - $timestamp"; then
+    print_info "Commit sur gh-pages: $commit_message"
+    if git commit -m "$commit_message"; then
+        print_success "Commit réussi sur gh-pages"
+        
         print_info "Push vers origin/gh-pages..."
-        git push origin gh-pages
-        print_success "Déploiement terminé avec succès!"
+        if git push origin gh-pages --force; then
+            print_success "✅ Déploiement réussi sur gh-pages !"
+            print_info "🌐 Site accessible sur: https://nicaisekassi.github.io/Formation-CLIMADA-CI/"
+        else
+            print_error "Échec du push vers gh-pages"
+            git checkout "$current_branch"
+            return 1
+        fi
     else
-        print_warning "Aucune modification à déployer, forçage du déploiement..."
-        git commit --allow-empty -m "🚀 Déploiement forcé authentification - $timestamp"
-        git push origin gh-pages
-        print_success "Déploiement forcé terminé!"
+        print_warning "Aucune modification à commiter sur gh-pages"
     fi
     
-    # Retourner sur main
-    print_info "Retour sur la branche main..."
-    git checkout main
+    # Retourner à la branche principale
+    print_info "Retour à la branche $current_branch..."
+    git checkout "$current_branch"
     
+    print_success "✅ Déploiement terminé avec succès"
     return 0
 }
 
 # 🌐 Vérifier le déploiement
 check_deployment() {
-    print_header "Vérification du déploiement"
+    print_header "🌐 Vérification du Déploiement"
     
+    print_success "✅ Déploiement terminé !"
     print_info "Le site sera mis à jour dans 2-3 minutes à l'adresse:"
     echo -e "${CYAN}https://nicaisekassi.github.io/Formation-CLIMADA-CI/${NC}"
+    echo ""
+    print_info "💡 Conseils pour vérifier l'accès:"
+    echo -e "  • Attendez 2-3 minutes pour la propagation"
+    echo -e "  • Videz le cache de votre navigateur (Ctrl+F5)"
+    echo -e "  • Testez en navigation privée"
+    echo ""
+    print_warning "⏰ Si l'utilisateur ne peut toujours pas accéder:"
+    echo -e "  • Vérifiez que son nom GitHub est exact (sensible à la casse)"
+    echo -e "  • Relancez ce script pour forcer une nouvelle construction"
     echo ""
     print_info "Pour tester la connexion du nouvel utilisateur:"
     echo -e "${CYAN}https://nicaisekassi.github.io/Formation-CLIMADA-CI/auth/login.html${NC}"
