@@ -35,7 +35,6 @@ const AUTHORIZED_USERS = [
   "ahitanoh",
   "danacyr10",
   "KOUASSI-KOFFI-JOSE-MARIA",
-  "AbolDgeProject",
 ];
 
 // Vérifier si l'utilisateur est connecté
