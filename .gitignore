@@ -1,47 +1,62 @@
-# Dossier MkDocs général (sauf le dossier de déploiement)
-MkDocs/*
-!MkDocs/manuel-utilisateur/
+# 🧹 Formation CLIMADA CI - Fichiers à ignorer
 
-# Fichiers Markdown (sauf README.md et ceux dans manuel-utilisateur)
-*.md
-!README.md
-!MkDocs/manuel-utilisateur/**/*.md
-
-# Documents Office
-*.docx
-*.xlsx
-*.pptx
-*.doc
-*.xls
-*.ppt
-
-# Dossiers de build générés
+# === Builds et fichiers générés ===
+# MkDocs builds temporaires
+MkDocs/manuel-utilisateur/site/
 site/
-build/
 
-# Fichiers temporaires
-*.tmp
-*.temp
-*~
+# Backups automatiques du script
+backups/
 
-# Fichiers de lock
-.~lock.*#
+# === Fichiers système ===
+.DS_Store
+Thumbs.db
+Desktop.ini
 
-# Environnements Python
+# === Environnements Python ===
 __pycache__/
 *.pyc
 *.pyo
-*.egg-info/
-.venv/
-venv/
+*.pyd
+.Python
 env/
+venv/
+.env
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
 
-# IDE et éditeurs
+# Conda
+*.conda
+.conda/
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# === Logs et fichiers temporaires ===
+*.log
+*.tmp
+*~
+.#*
+.tmp/
+
+# === IDEs ===
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
+# === Tests et coverage ===
+.coverage
+.pytest_cache/
+htmlcov/
+
+# === Documentation builds ===
+docs/_build/
+docs/build/
+
+# === Archives ===
+*.zip
+*.tar.gz
+*.rar
