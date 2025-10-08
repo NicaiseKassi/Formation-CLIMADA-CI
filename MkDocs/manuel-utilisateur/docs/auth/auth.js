@@ -22,6 +22,7 @@ const AUTHORIZED_USERS = [
   "Dr-Ministere-Environnement",
   "Expert-Agriculture-CI",
   "Participant-Universite",
+  "kacouhub",
 ];
 
 // Vérifier si l'utilisateur est connecté
