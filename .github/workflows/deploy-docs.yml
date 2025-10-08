@@ -50,4 +50,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4# Updated mer. 08 oct. 2025 04:48:49 GMT
