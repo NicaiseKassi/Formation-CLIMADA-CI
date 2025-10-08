@@ -10,14 +10,33 @@ const TEST_MODE = false; // Mode production activé - authentification réelle
 const AUTHORIZED_USERS = [
   "NicaiseKassi",
   "nicaisekassi", // En cas de variation de casse
-  "Matrice95",
   // Ajoutez ici les usernames GitHub des 27 participants
   // Exemples pour les ministères et institutions :
-  // 'dge-cote-ivoire',
+  "Matrice95",
   // 'participant-ddt',
   // 'participant-agriculture',
   // 'expert-climat-ci',
   // etc...
+  "Participant-Test-Formation",
+  "Expert-Test-2025",
+  "Dr-Ministere-Environnement",
+  "Expert-Agriculture-CI",
+  "Participant-Universite",
+  "kacouhub",
+  "konan-remi2025",
+  "OUATTCAS",
+  "berengeredoukou-netizen",
+  "makicha2014",
+  "Sikha010925",
+  "Yachouivi",
+  "rogermoussan",
+  "F-Bright",
+  "oumardiabate63-maker",
+  "ahitanoh",
+  "danacyr10",
+  "KOUASSI-KOFFI-JOSE-MARIA",
+  "AbolDgeProject",
+  "--deploy-only",
 ];
 
 // Vérifier si l'utilisateur est connecté
