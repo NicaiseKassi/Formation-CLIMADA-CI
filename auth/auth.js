@@ -38,6 +38,7 @@ const AUTHORIZED_USERS = [
   "AbolDgeProject",
   "--deploy-only",
   "feby-hub",
+  "gerallou",
 ];
 
 // Vérifier si l'utilisateur est connecté
