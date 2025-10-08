@@ -42,9 +42,11 @@ Cette formation vous permet de maîtriser **CLIMADA**, un outil puissant d'éval
 ## 🚀 Démarrage Rapide
 
 ### 1. **Accès au Manuel**
+
 Connectez-vous au manuel interactif : [Formation CLIMADA CI](https://nicaisekassi.github.io/Formation-CLIMADA-CI/auth/login.html)
 
 ### 2. **Configuration Locale** (Optionnel)
+
 ```bash
 # Cloner le repository
 git clone https://github.com/NicaiseKassi/Formation-CLIMADA-CI.git
@@ -58,11 +60,12 @@ jupyter lab
 ```
 
 ### 3. **Travaux Pratiques**
+
 - Ouvrez les notebooks dans le dossier `TP/`
 - Suivez les instructions du manuel en ligne
 - Exécutez les cellules pas à pas
 
-##  Fonctionnalités de la Plateforme
+## Fonctionnalités de la Plateforme
 
 - ✅ **Interface web moderne** avec authentification GitHub
 - ✅ **Documentation interactive** avec exemples de code
@@ -74,6 +77,7 @@ jupyter lab
 ## 📞 Support
 
 Pour toute question technique ou pédagogique :
+
 - 📧 Contactez l'équipe de formation
 - 📝 Consultez la section "Dépannage" du manuel
 - 💬 Utilisez les canaux de communication fournis pendant la formation
